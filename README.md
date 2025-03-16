@@ -51,21 +51,52 @@ Each row in the dataset represents one day of weather, giving the AI key details
 | Wind Speed | How strong the wind was (m/s). | Determines if a windbreaker is necessary. |
 | Weather | The overall condition (rain, sun, drizzle, fog, snow). | This is what the AI predicts! |
 
+### Why Does the AI Choose Shirt Type Based on Max Temperature and Bottom Wear Based on Min Temperature?
+
+Imagine getting dressed in the morning. You’re trying to decide what to wear for the entire day, but here’s the tricky part:
+
+- Mornings and nights are often much colder than the afternoon.
+- Your upper body is easier to adjust (you can layer shirts or take off a jacket), but your lower body? Not so much.
+
+That’s why our AI makes clothing recommendations the way most people naturally do—by basing shirt choice on the warmest part of the day (max temp) and pants vs. shorts on the coldest part of the day (min temp).
+
+#### 1. Why is Shirt Type Based on Max Temperature?
+
+- You dress for the heat, not the cold, when picking a shirt.
+    - The hottest part of the day is when you feel the most discomfort from wearing something too warm.
+    - If it’s hot in the afternoon (e.g., 25°C/77°F+), you’re going to want a short-sleeve shirt, even if the morning started a little chilly.
+    - If it never warms up (e.g., max temp = 15°C/59°F), then a long-sleeve shirt is a better choice.
+- Shirts are easy to adjust.
+    - If it’s chilly in the morning but warms up later, you can layer a jacket or sweater over a short-sleeve shirt and take it off when it gets hot.
+    - Your arms are more sensitive to heat—so even on a cold morning, if it gets hot later, you’ll want a breathable short sleeve option.
+
+#### 2. Why is Bottom Wear Based on Min Temperature?
+- Legs don’t adjust as easily as your upper body.
+    - Unlike shirts, you can’t easily change your pants during the day—so you want to be comfortable from morning to night.
+    - If the morning or night is too cold, wearing shorts might not be comfortable, even if the afternoon warms up.
+- People tend to dress their legs for the coldest part of the day.
+    - If the morning is below 10°C (50°F) → Most people will wear pants, even if it warms up later.
+    - If the lowest temperature is still above 18°C (64°F) → Shorts are comfortable all day long.
+
+#### How This Helps You Dress Smarter
+- You won’t overheat in the afternoon because your shirt is chosen for the hottest part of the day.
+- You won’t freeze in the morning because your pants/shorts are picked based on the coldest part of the day.
+
 ### How These Features Help the AI Make Better Clothing Recommendations
-🔹 Temperature (`temp_max`, `temp_min`) → Affects shirt choice and bottom wear
-    <ul><li>Hot day? → Short sleeves & shorts</li>
-    <li>Chilly morning? → Long sleeves & pants</li></ul>
+- Temperature (`temp_max`, `temp_min`) → Affects shirt choice and bottom wear
+    - Hot day? → Short sleeves & shorts
+    - Chilly morning? → Long sleeves & pants
 
-🌧 Precipitation (`precipitation`) → Tells us if a raincoat or snow jacket is needed
-    <ul><li>Light rain? → Raincoat, but no need for extra layers</li>
-    <li>Heavy snow? → Snow jacket & extra warmth</li></ul>
+- Precipitation (`precipitation`) → Tells us if a raincoat or snow jacket is needed
+    - Light rain? → Raincoat, but no need for extra layers
+    - Heavy snow? → Snow jacket & extra warmth
 
-💨 Wind Speed (`wind`) → Helps decide if a windbreaker is necessary
-    <ul><li>Breezy but warm? → No jacket needed</li>
-    <li>Strong winds? → Windbreaker, even if it's sunny</li></ul>
+- Wind Speed (`wind`) → Helps decide if a windbreaker is necessary
+    - Breezy but warm? → No jacket needed
+    - Strong winds? → Windbreaker, even if it's sunny
 
-☀️ Weather Type (`weather`) → The AI’s main prediction
-    <ul><li>This is the final decision that determines all clothing recommendations.</li></ul>
+- Weather Type (`weather`) → The AI’s main prediction
+    - This is the final decision that determines all clothing recommendations.
 
 ### How It All Comes Together
 
