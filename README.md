@@ -24,6 +24,8 @@ So next time you’re wondering, *“Should I bring a jacket?”*—just ask the
 
 ## Agent Setup, Data Preprocessing, Training setup
 
+[Data Exploration and Preprocessing](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#data-exploration-and-preprocessing)
+
 ### Exploring the Dataset & Why It Matters
 
 Ever stepped outside and instantly regretted your outfit choice? Maybe you didn’t check the forecast, or maybe the forecast wasn’t detailed enough to tell you what to actually wear. That’s exactly what this AI is built to fix.
@@ -78,7 +80,7 @@ This means no more standing in front of your closet, wondering if you’ll freez
 
 ## Training the model
 
-[Training the model](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb##Training-the-Model)
+[Training the model](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
 
 ## Conclusion / Results
 
