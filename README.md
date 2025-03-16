@@ -16,7 +16,7 @@ This smart assistant doesn’t just predict the weather—it also tells you what
 | Sensors (Inputs) | The model takes in key weather factors to make predictions: <ul><li>Precipitation (mm): Helps determine if a raincoat is needed.</li><li>Temperature Max (°C): Influences shirt choice.</li><li>Temperature Min (°C): Affects whether shorts or pants are recommended.</li><li>Wind Speed (m/s): Determines if a windbreaker is necessary.</li></ul> These factors work together to ensure the AI makes weather-appropriate outfit choices. |
 ## Background & Purpose
 
-The whole idea behind this agent is simple: knowing the weather isn’t enough—people need to know how to dress for it. Instead of just giving you a generic weather forecast, this AI helps you make smarter clothing choices, so you’re always prepared.
+The whole idea behind this utility-based agent is simple: knowing the weather isn’t enough—people need to know how to dress for it. Instead of just giving you a generic weather forecast, this AI helps you make smarter clothing choices, so you’re always prepared.
 
 We built this system using a Random Forest Classifier, carefully optimizing it to accurately predict both common and rare weather conditions (like fog or drizzle, which are often misclassified in other models). With this approach, the AI is better at handling real-world weather variations and giving more reliable recommendations.
 
