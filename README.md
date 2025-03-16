@@ -24,7 +24,7 @@ So next time you’re wondering, *“Should I bring a jacket?”*—just ask the
 
 ## Agent Setup, Data Preprocessing, Training setup
 
-[Data Exploration and Preprocessing](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#data-exploration-and-preprocessing)
+[Data Exploration and Preprocessing](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#data-exploration-and-preprocessing)
 
 ### Exploring the Dataset & Why It Matters
 
@@ -80,7 +80,7 @@ This means no more standing in front of your closet, wondering if you’ll freez
 
 ## Training the model
 
-[Training the model](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
+[Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
 
 ## Conclusion / Results
 
