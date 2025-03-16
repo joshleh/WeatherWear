@@ -77,6 +77,9 @@ For instance:
 This means no more standing in front of your closet, wondering if you’ll freeze or sweat through your clothes. The AI does the thinking for you.
 
 ## Training the model
+
+[Training the model](https://github.com/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb##Training-the-Model)
+
 ## Conclusion / Results
 
 Now that we’ve trained our model, it’s time to answer the big question: How well does it actually work?
