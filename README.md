@@ -111,7 +111,7 @@ This means no more standing in front of your closet, wondering if you’ll freez
 
 ## Training the model
 
-Follow along in the jupyter notebook for this section here:[Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
+Follow along in the jupyter notebook for this section here: [Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
 
 ### Why We Chose Random Forest (And How It Works)
 
