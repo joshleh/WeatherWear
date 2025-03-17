@@ -113,6 +113,58 @@ This means no more standing in front of your closet, wondering if you’ll freez
 
 [Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
 
+### Why We Chose Random Forest (And How It Works)
+
+In this project, we used a Random Forest Classifier—a powerful machine learning algorithm that helps predict weather conditions and recommend clothing based on temperature, wind, and precipitation.
+
+Even though Random Forest might not have been explicitly covered in class, it’s a widely used model that balances accuracy, interpretability, and robustness—making it perfect for this task. So, let’s break it down in a simple, human-friendly way.
+
+#### What is a Random Forest Classifier?
+Think of Random Forest as a team of decision trees working together to make predictions. Each tree is like a mini-expert, and instead of relying on a single tree, we let many trees vote on the best answer.
+
+Here’s how it works:
+- The forest is made up of many individual decision trees.
+- Each tree is trained on a random portion of the data.
+- Each tree makes a prediction (Rain? Sun? Snow?).
+- The final prediction is based on majority voting.
+
+This method makes Random Forest much stronger than a single Decision Tree, because it:
+- Reduces overfitting (no single tree dominates the prediction).
+- Handles missing or noisy data well (because multiple trees vote).
+- Works with both numerical and categorical data.
+
+##### How is Random Forest Different from a Single Decision Tree?
+
+A Decision Tree is like a simple flowchart that asks a series of yes/no questions:
+
+For instance:
+- Is the temperature above 20°C? → If yes, wear a short-sleeve shirt.
+- Is it raining? → If yes, bring a raincoat.
+
+While a single Decision Tree is easy to understand, it can be too simple and might overfit the data.
+- Random Forest solves this by training multiple decision trees and averaging their results.
+- Instead of relying on just one tree, we get opinions from many trees and take the majority vote.
+- This makes the model more accurate and reliable in different weather scenarios.
+
+#### How Does Random Forest Perform Inference? (How It Makes Predictions)
+
+After training, the model makes predictions using this simple 3-step process:
+1. A new weather input (temperature, precipitation, wind) is passed into the model.
+2. Each tree in the forest makes its own prediction (e.g., one tree says "Rain", another says "Sun").
+3. The final prediction is determined by majority vote (e.g., if most trees say "Rain", the model predicts "Rain").
+
+Why is this better than a single tree?
+- If one tree makes a mistake, it won’t ruin the whole prediction.
+- The model is more robust to weird or unusual weather patterns.
+
+#### Final Thoughts: Why Random Forest Was the Best Choice
+- Handles multiple weather factors well (temperature, wind, precipitation).
+- Balances accuracy and interpretability (not too simple, not too complex).
+- Improves predictions for rare weather events (Drizzle, Fog, Snow) by combining multiple decision trees.
+- More reliable than a single tree (less chance of overfitting).
+
+Instead of making one big decision, Random Forest lets multiple trees work together to make smarter predictions—just like how multiple meteorologists would give a better weather forecast than one person alone.
+
 ## Conclusion / Results
 
 Now that we’ve trained our model, it’s time to answer the big question: How well does it actually work?
