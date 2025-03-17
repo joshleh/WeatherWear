@@ -51,6 +51,9 @@ Each row in the dataset represents one day of weather, giving the AI key details
 | Wind Speed | How strong the wind was (m/s). | Determines if a windbreaker is necessary. |
 | Weather | The overall condition (rain, sun, drizzle, fog, snow). | This is what the AI predicts! |
 
+Below is a diagram of the general overview of what each variable/factor affects:
+![Overview](overview.png)
+
 ### Why Does the AI Choose Shirt Type Based on Max Temperature and Bottom Wear Based on Min Temperature?
 
 Imagine getting dressed in the morning. You’re trying to decide what to wear for the entire day, but here’s the tricky part:
