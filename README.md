@@ -24,7 +24,7 @@ So next time you’re wondering, *“Should I bring a jacket?”*—just ask the
 
 ## Agent Setup, Data Preprocessing, Training setup
 
-[Data Exploration and Preprocessing](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#data-exploration-and-preprocessing)
+Follow along in the jupyter notebook for this section here: [Data Exploration and Preprocessing](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#data-exploration-and-preprocessing)
 
 ### Exploring the Dataset & Why It Matters
 
@@ -111,7 +111,7 @@ This means no more standing in front of your closet, wondering if you’ll freez
 
 ## Training the model
 
-[Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
+Follow along in the jupyter notebook for this section here:[Training the model](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#training-the-model)
 
 ### Why We Chose Random Forest (And How It Works)
 
@@ -168,6 +168,8 @@ Instead of making one big decision, Random Forest lets multiple trees work toget
 ## Conclusion / Results
 
 Now that we’ve trained our model, it’s time to answer the big question: How well does it actually work?
+
+Follow along in the jupyter notebook for this section here: [Conclusion/Results](https://nbviewer.org/github/joshleh/WeatherWear/blob/Milestone3/weather-predictor.ipynb#conclusions-results)
 
 Our AI’s goal wasn’t just to predict the weather—it also needed to give practical outfit recommendations so people could dress appropriately. Let’s break down how well it performed, what worked, what didn’t, and what could be improved.
 
