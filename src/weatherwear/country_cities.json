@@ -1,0 +1,1792 @@
+{
+ "AF": [
+  {
+   "name": "Kabul",
+   "country": "Afghanistan",
+   "admin1": "Kabul",
+   "latitude": 34.52813,
+   "longitude": 69.17233
+  },
+  {
+   "name": "Herat",
+   "country": "Afghanistan",
+   "admin1": "Herat",
+   "latitude": 34.34817,
+   "longitude": 62.19967
+  },
+  {
+   "name": "Kandahar",
+   "country": "Afghanistan",
+   "admin1": "Kandahar",
+   "latitude": 31.61332,
+   "longitude": 65.71013
+  }
+ ],
+ "AR": [
+  {
+   "name": "Buenos Aires",
+   "country": "Argentina",
+   "admin1": "Buenos Aires F.D.",
+   "latitude": -34.61315,
+   "longitude": -58.37723
+  },
+  {
+   "name": "Córdoba",
+   "country": "Argentina",
+   "admin1": "Cordoba",
+   "latitude": -31.40648,
+   "longitude": -64.18853
+  },
+  {
+   "name": "Rosario",
+   "country": "Argentina",
+   "admin1": "Santa Fe",
+   "latitude": -32.94682,
+   "longitude": -60.63932
+  },
+  {
+   "name": "Tucumán",
+   "country": "Argentina",
+   "admin1": "Tucuman",
+   "latitude": -26.81601,
+   "longitude": -65.21051
+  },
+  {
+   "name": "Mendoza",
+   "country": "Argentina",
+   "admin1": "Mendoza",
+   "latitude": -32.88946,
+   "longitude": -68.84582
+  }
+ ],
+ "AU": [
+  {
+   "name": "Sydney",
+   "country": "Australia",
+   "admin1": "New South Wales",
+   "latitude": -33.86785,
+   "longitude": 151.20732
+  },
+  {
+   "name": "Melbourne",
+   "country": "Australia",
+   "admin1": "Victoria",
+   "latitude": -37.814,
+   "longitude": 144.96332
+  },
+  {
+   "name": "Brisbane",
+   "country": "Australia",
+   "admin1": "Queensland",
+   "latitude": -27.46794,
+   "longitude": 153.02809
+  },
+  {
+   "name": "Perth",
+   "country": "Australia",
+   "admin1": "Western Australia",
+   "latitude": -31.95224,
+   "longitude": 115.8614
+  },
+  {
+   "name": "Adelaide",
+   "country": "Australia",
+   "admin1": "South Australia",
+   "latitude": -34.92866,
+   "longitude": 138.59863
+  }
+ ],
+ "BD": [
+  {
+   "name": "Dhaka",
+   "country": "Bangladesh",
+   "admin1": "Dhaka Division",
+   "latitude": 23.7104,
+   "longitude": 90.40744,
+   "local_name": "ঢাকা"
+  },
+  {
+   "name": "Chittagong",
+   "country": "Bangladesh",
+   "admin1": "Chittagong",
+   "latitude": 22.3384,
+   "longitude": 91.83168
+  },
+  {
+   "name": "Khulna",
+   "country": "Bangladesh",
+   "admin1": "Khulna Division",
+   "latitude": 22.80979,
+   "longitude": 89.56439,
+   "local_name": "খুলনা"
+  },
+  {
+   "name": "Rajshahi",
+   "country": "Bangladesh",
+   "admin1": "Rajshahi Division",
+   "latitude": 24.374,
+   "longitude": 88.60114,
+   "local_name": "Rampur Boalia"
+  }
+ ],
+ "BR": [
+  {
+   "name": "São Paulo",
+   "country": "Brazil",
+   "admin1": "São Paulo",
+   "latitude": -23.5475,
+   "longitude": -46.63611
+  },
+  {
+   "name": "Rio de Janeiro",
+   "country": "Brazil",
+   "admin1": "Rio de Janeiro",
+   "latitude": -22.90642,
+   "longitude": -43.18223
+  },
+  {
+   "name": "Salvador",
+   "country": "Brazil",
+   "admin1": "Bahia",
+   "latitude": -12.97563,
+   "longitude": -38.49096
+  },
+  {
+   "name": "Fortaleza",
+   "country": "Brazil",
+   "admin1": "Ceará",
+   "latitude": -3.71722,
+   "longitude": -38.54306
+  },
+  {
+   "name": "Brasília",
+   "country": "Brazil",
+   "admin1": "Federal District",
+   "latitude": -15.77972,
+   "longitude": -47.92972
+  }
+ ],
+ "CA": [
+  {
+   "name": "Toronto",
+   "country": "Canada",
+   "admin1": "Ontario",
+   "latitude": 43.70643,
+   "longitude": -79.39864
+  },
+  {
+   "name": "Montreal",
+   "country": "Canada",
+   "admin1": "Quebec",
+   "latitude": 45.50884,
+   "longitude": -73.58781
+  },
+  {
+   "name": "Calgary",
+   "country": "Canada",
+   "admin1": "Alberta",
+   "latitude": 51.05011,
+   "longitude": -114.08529
+  },
+  {
+   "name": "Ottawa",
+   "country": "Canada",
+   "admin1": "Ontario",
+   "latitude": 45.41117,
+   "longitude": -75.69812
+  },
+  {
+   "name": "Vancouver",
+   "country": "Canada",
+   "admin1": "British Columbia",
+   "latitude": 49.24966,
+   "longitude": -123.11934
+  }
+ ],
+ "CH": [
+  {
+   "name": "Zurich",
+   "country": "Switzerland",
+   "admin1": "Zurich",
+   "latitude": 47.36667,
+   "longitude": 8.55
+  },
+  {
+   "name": "Geneva",
+   "country": "Switzerland",
+   "admin1": "Geneva",
+   "latitude": 46.20222,
+   "longitude": 6.14569
+  },
+  {
+   "name": "Basel",
+   "country": "Switzerland",
+   "admin1": "Basel-City",
+   "latitude": 47.55839,
+   "longitude": 7.57327
+  },
+  {
+   "name": "Lausanne",
+   "country": "Switzerland",
+   "admin1": "Vaud",
+   "latitude": 46.516,
+   "longitude": 6.63282
+  },
+  {
+   "name": "Bern",
+   "country": "Switzerland",
+   "admin1": "Bern",
+   "latitude": 46.94809,
+   "longitude": 7.44744
+  }
+ ],
+ "CL": [
+  {
+   "name": "Santiago",
+   "country": "Chile",
+   "admin1": "Santiago Metropolitan",
+   "latitude": -33.45694,
+   "longitude": -70.64827
+  },
+  {
+   "name": "Antofagasta",
+   "country": "Chile",
+   "admin1": "Antofagasta",
+   "latitude": -23.65236,
+   "longitude": -70.3954
+  },
+  {
+   "name": "Valparaíso",
+   "country": "Chile",
+   "admin1": "Región de Valparaíso",
+   "latitude": -33.036,
+   "longitude": -71.62963
+  },
+  {
+   "name": "Concepción",
+   "country": "Chile",
+   "admin1": "Región del Biobío",
+   "latitude": -36.82699,
+   "longitude": -73.04977
+  }
+ ],
+ "CN": [
+  {
+   "name": "Shanghai",
+   "country": "China",
+   "admin1": "Shanghai",
+   "latitude": 31.22222,
+   "longitude": 121.45806,
+   "local_name": "上海"
+  },
+  {
+   "name": "Beijing",
+   "country": "China",
+   "admin1": "Beijing",
+   "latitude": 39.9075,
+   "longitude": 116.39723,
+   "local_name": "北京市"
+  },
+  {
+   "name": "Shenzhen",
+   "country": "China",
+   "admin1": "Guangdong",
+   "latitude": 22.54554,
+   "longitude": 114.0683,
+   "local_name": "深圳"
+  },
+  {
+   "name": "Guangzhou",
+   "country": "China",
+   "admin1": "Guangdong",
+   "latitude": 23.11667,
+   "longitude": 113.25,
+   "local_name": "广州"
+  },
+  {
+   "name": "Chengdu",
+   "country": "China",
+   "admin1": "Sichuan",
+   "latitude": 30.66667,
+   "longitude": 104.06667,
+   "local_name": "成都市"
+  },
+  {
+   "name": "Xi'an",
+   "country": "China",
+   "admin1": "Shaanxi",
+   "latitude": 34.25833,
+   "longitude": 108.92861
+  }
+ ],
+ "CO": [
+  {
+   "name": "Bogotá",
+   "country": "Colombia",
+   "admin1": "Bogota D.C.",
+   "latitude": 4.60971,
+   "longitude": -74.08175
+  },
+  {
+   "name": "Santiago de Cali",
+   "country": "Colombia",
+   "admin1": "Valle del Cauca Department",
+   "latitude": 3.43722,
+   "longitude": -76.5225
+  },
+  {
+   "name": "Medellín",
+   "country": "Colombia",
+   "admin1": "Antioquia",
+   "latitude": 6.25184,
+   "longitude": -75.56359
+  },
+  {
+   "name": "Barranquilla",
+   "country": "Colombia",
+   "admin1": "Atlántico",
+   "latitude": 10.96854,
+   "longitude": -74.78132
+  },
+  {
+   "name": "Cartagena",
+   "country": "Colombia",
+   "admin1": "Departamento de Bolívar",
+   "latitude": 10.39972,
+   "longitude": -75.51444
+  }
+ ],
+ "CZ": [
+  {
+   "name": "Prague",
+   "country": "Czechia",
+   "admin1": "Prague",
+   "latitude": 50.08804,
+   "longitude": 14.42076,
+   "local_name": "Praha"
+  },
+  {
+   "name": "Brno",
+   "country": "Czechia",
+   "admin1": "South Moravian",
+   "latitude": 49.19522,
+   "longitude": 16.60796
+  },
+  {
+   "name": "Ostrava",
+   "country": "Czechia",
+   "admin1": "Moravskoslezský kraj",
+   "latitude": 49.83465,
+   "longitude": 18.28204
+  },
+  {
+   "name": "Pilsen",
+   "country": "Czechia",
+   "admin1": "Plzeň Region",
+   "latitude": 49.74747,
+   "longitude": 13.37759,
+   "local_name": "Plzeň"
+  }
+ ],
+ "DE": [
+  {
+   "name": "Berlin",
+   "country": "Germany",
+   "admin1": "State of Berlin",
+   "latitude": 52.52437,
+   "longitude": 13.41053
+  },
+  {
+   "name": "Hamburg",
+   "country": "Germany",
+   "admin1": "Hamburg",
+   "latitude": 53.55073,
+   "longitude": 9.99302
+  },
+  {
+   "name": "Munich",
+   "country": "Germany",
+   "admin1": "Bavaria",
+   "latitude": 48.13743,
+   "longitude": 11.57549,
+   "local_name": "München"
+  },
+  {
+   "name": "Cologne",
+   "country": "Germany",
+   "admin1": "North Rhine-Westphalia",
+   "latitude": 50.93333,
+   "longitude": 6.95
+  },
+  {
+   "name": "Frankfurt am Main",
+   "country": "Germany",
+   "admin1": "Hesse",
+   "latitude": 50.11552,
+   "longitude": 8.68417
+  }
+ ],
+ "DK": [
+  {
+   "name": "Copenhagen",
+   "country": "Denmark",
+   "admin1": "Capital Region",
+   "latitude": 55.67594,
+   "longitude": 12.56553,
+   "local_name": "København"
+  },
+  {
+   "name": "Aarhus",
+   "country": "Denmark",
+   "admin1": "Central Jutland",
+   "latitude": 56.15674,
+   "longitude": 10.21076
+  },
+  {
+   "name": "Odense",
+   "country": "Denmark",
+   "admin1": "South Denmark",
+   "latitude": 55.39594,
+   "longitude": 10.38831
+  }
+ ],
+ "EG": [
+  {
+   "name": "Cairo",
+   "country": "Egypt",
+   "admin1": "Cairo",
+   "latitude": 30.06263,
+   "longitude": 31.24967,
+   "local_name": "القاهرة"
+  },
+  {
+   "name": "Alexandria",
+   "country": "Egypt",
+   "admin1": "Alexandria",
+   "latitude": 31.20176,
+   "longitude": 29.91582,
+   "local_name": "الإسكندرية"
+  },
+  {
+   "name": "Giza",
+   "country": "Egypt",
+   "admin1": "Giza",
+   "latitude": 30.00944,
+   "longitude": 31.20861,
+   "local_name": "الجيزة"
+  },
+  {
+   "name": "Luxor",
+   "country": "Egypt",
+   "admin1": "Luxor",
+   "latitude": 25.69893,
+   "longitude": 32.6421,
+   "local_name": "الأقصر"
+  },
+  {
+   "name": "Sharm el Sheikh",
+   "country": "Egypt",
+   "admin1": "South Sinai",
+   "latitude": 27.91582,
+   "longitude": 34.32995
+  }
+ ],
+ "ES": [
+  {
+   "name": "Madrid",
+   "country": "Spain",
+   "admin1": "Madrid",
+   "latitude": 40.4165,
+   "longitude": -3.70256
+  },
+  {
+   "name": "Barcelona",
+   "country": "Spain",
+   "admin1": "Catalonia",
+   "latitude": 41.38879,
+   "longitude": 2.15899
+  },
+  {
+   "name": "Valencia",
+   "country": "Spain",
+   "admin1": "Valencia",
+   "latitude": 39.47391,
+   "longitude": -0.37966
+  },
+  {
+   "name": "Seville",
+   "country": "Spain",
+   "admin1": "Andalusia",
+   "latitude": 37.38283,
+   "longitude": -5.97317
+  },
+  {
+   "name": "Málaga",
+   "country": "Spain",
+   "admin1": "Andalusia",
+   "latitude": 36.72016,
+   "longitude": -4.42034
+  }
+ ],
+ "FI": [
+  {
+   "name": "Helsingfors",
+   "country": "Finland",
+   "admin1": "Uusimaa",
+   "latitude": 60.16952,
+   "longitude": 24.93545,
+   "local_name": "Helsinki"
+  },
+  {
+   "name": "Espoo",
+   "country": "Finland",
+   "admin1": "Uusimaa",
+   "latitude": 60.2052,
+   "longitude": 24.6522
+  },
+  {
+   "name": "Tampere",
+   "country": "Finland",
+   "admin1": "Tampere",
+   "latitude": 61.49911,
+   "longitude": 23.78712
+  },
+  {
+   "name": "Turku",
+   "country": "Finland",
+   "admin1": "Southwest Finland",
+   "latitude": 60.45148,
+   "longitude": 22.26869
+  }
+ ],
+ "FR": [
+  {
+   "name": "Paris",
+   "country": "France",
+   "admin1": "Île-de-France",
+   "latitude": 48.85341,
+   "longitude": 2.3488
+  },
+  {
+   "name": "Marseille",
+   "country": "France",
+   "admin1": "Provence",
+   "latitude": 43.29695,
+   "longitude": 5.38107
+  },
+  {
+   "name": "Lyon",
+   "country": "France",
+   "admin1": "Auvergne-Rhône-Alpes",
+   "latitude": 45.74846,
+   "longitude": 4.84671
+  },
+  {
+   "name": "Toulouse",
+   "country": "France",
+   "admin1": "Occitanie",
+   "latitude": 43.60426,
+   "longitude": 1.44367
+  },
+  {
+   "name": "Nice",
+   "country": "France",
+   "admin1": "Provence",
+   "latitude": 43.70313,
+   "longitude": 7.26608
+  }
+ ],
+ "GB": [
+  {
+   "name": "London",
+   "country": "United Kingdom",
+   "admin1": "England",
+   "latitude": 51.50853,
+   "longitude": -0.12574
+  },
+  {
+   "name": "Birmingham",
+   "country": "United Kingdom",
+   "admin1": "England",
+   "latitude": 52.48142,
+   "longitude": -1.89983
+  },
+  {
+   "name": "Glasgow",
+   "country": "United Kingdom",
+   "admin1": "Scotland",
+   "latitude": 55.86515,
+   "longitude": -4.25763
+  },
+  {
+   "name": "Manchester",
+   "country": "United Kingdom",
+   "admin1": "England",
+   "latitude": 53.48095,
+   "longitude": -2.23743
+  },
+  {
+   "name": "Edinburgh",
+   "country": "United Kingdom",
+   "admin1": "Scotland",
+   "latitude": 55.95206,
+   "longitude": -3.19648
+  }
+ ],
+ "GR": [
+  {
+   "name": "Athens",
+   "country": "Greece",
+   "admin1": "Attica",
+   "latitude": 37.98376,
+   "longitude": 23.72784,
+   "local_name": "Αθήνα"
+  },
+  {
+   "name": "Thessaloniki",
+   "country": "Greece",
+   "admin1": "Central Macedonia",
+   "latitude": 40.64361,
+   "longitude": 22.93086,
+   "local_name": "Θεσσαλονίκη"
+  },
+  {
+   "name": "Heraklion",
+   "country": "Greece",
+   "admin1": "Crete",
+   "latitude": 35.32787,
+   "longitude": 25.14341
+  }
+ ],
+ "HU": [
+  {
+   "name": "Budapest",
+   "country": "Hungary",
+   "admin1": "Budapest",
+   "latitude": 47.49835,
+   "longitude": 19.04045
+  },
+  {
+   "name": "Debrecen",
+   "country": "Hungary",
+   "admin1": "Hajdú-Bihar",
+   "latitude": 47.53167,
+   "longitude": 21.62444
+  },
+  {
+   "name": "Szeged",
+   "country": "Hungary",
+   "admin1": "Csongrád megye",
+   "latitude": 46.253,
+   "longitude": 20.14824
+  },
+  {
+   "name": "Pécs",
+   "country": "Hungary",
+   "admin1": "Baranya",
+   "latitude": 46.0725,
+   "longitude": 18.23083
+  }
+ ],
+ "ID": [
+  {
+   "name": "Sunda Kelapa",
+   "country": "Indonesia",
+   "admin1": "Jakarta",
+   "latitude": -6.21462,
+   "longitude": 106.84513
+  },
+  {
+   "name": "Surabaya",
+   "country": "Indonesia",
+   "admin1": "East Java",
+   "latitude": -7.24917,
+   "longitude": 112.75083
+  },
+  {
+   "name": "Bandung",
+   "country": "Indonesia",
+   "admin1": "West Java",
+   "latitude": -6.92222,
+   "longitude": 107.60694
+  },
+  {
+   "name": "Medan",
+   "country": "Indonesia",
+   "admin1": "North Sumatra",
+   "latitude": 3.58333,
+   "longitude": 98.66667
+  },
+  {
+   "name": "Denpasar",
+   "country": "Indonesia",
+   "admin1": "Bali",
+   "latitude": -8.65,
+   "longitude": 115.21667
+  }
+ ],
+ "IN": [
+  {
+   "name": "Mumbai",
+   "country": "India",
+   "admin1": "Maharashtra",
+   "latitude": 19.07283,
+   "longitude": 72.88261,
+   "local_name": "मुंबई"
+  },
+  {
+   "name": "Delhi",
+   "country": "India",
+   "admin1": "Delhi",
+   "latitude": 28.65195,
+   "longitude": 77.23149,
+   "local_name": "दिल्ली"
+  },
+  {
+   "name": "Bengaluru",
+   "country": "India",
+   "admin1": "Karnataka",
+   "latitude": 12.97194,
+   "longitude": 77.59369,
+   "local_name": "बंगलौर"
+  },
+  {
+   "name": "Hyderabad",
+   "country": "India",
+   "admin1": "Telangana",
+   "latitude": 17.38405,
+   "longitude": 78.45636,
+   "local_name": "हैदराबाद"
+  },
+  {
+   "name": "Chennai",
+   "country": "India",
+   "admin1": "Tamil Nadu",
+   "latitude": 13.08784,
+   "longitude": 80.27847,
+   "local_name": "चेन्नई"
+  },
+  {
+   "name": "Calcutta",
+   "country": "India",
+   "admin1": "West Bengal",
+   "latitude": 22.56263,
+   "longitude": 88.36304,
+   "local_name": "कोलकाता"
+  }
+ ],
+ "IR": [
+  {
+   "name": "Tehran",
+   "country": "Iran",
+   "admin1": "Tehran",
+   "latitude": 35.69439,
+   "longitude": 51.42151,
+   "local_name": "طهران"
+  },
+  {
+   "name": "Mashhad",
+   "country": "Iran",
+   "admin1": "Razavi Khorasan",
+   "latitude": 36.29807,
+   "longitude": 59.60567,
+   "local_name": "مشهد"
+  },
+  {
+   "name": "Isfahan",
+   "country": "Iran",
+   "admin1": "Isfahan",
+   "latitude": 32.65246,
+   "longitude": 51.67462,
+   "local_name": "اصفهان"
+  },
+  {
+   "name": "Tabriz",
+   "country": "Iran",
+   "admin1": "East Azerbaijan",
+   "latitude": 38.08,
+   "longitude": 46.2919,
+   "local_name": "تبريز"
+  },
+  {
+   "name": "Shiraz",
+   "country": "Iran",
+   "admin1": "Fars",
+   "latitude": 29.61031,
+   "longitude": 52.53113,
+   "local_name": "شیراز"
+  }
+ ],
+ "IT": [
+  {
+   "name": "Rome",
+   "country": "Italy",
+   "admin1": "Lazio",
+   "latitude": 41.89193,
+   "longitude": 12.51133,
+   "local_name": "Roma"
+  },
+  {
+   "name": "Milan",
+   "country": "Italy",
+   "admin1": "Lombardy",
+   "latitude": 45.46427,
+   "longitude": 9.18951,
+   "local_name": "Milano"
+  },
+  {
+   "name": "Naples",
+   "country": "Italy",
+   "admin1": "Campania",
+   "latitude": 40.85216,
+   "longitude": 14.26811,
+   "local_name": "Napule"
+  },
+  {
+   "name": "Turin",
+   "country": "Italy",
+   "admin1": "Piedmont",
+   "latitude": 45.07049,
+   "longitude": 7.68682,
+   "local_name": "Torino"
+  },
+  {
+   "name": "Florence",
+   "country": "Italy",
+   "admin1": "Tuscany",
+   "latitude": 43.77925,
+   "longitude": 11.24626,
+   "local_name": "Firenze"
+  },
+  {
+   "name": "Venice",
+   "country": "Italy",
+   "admin1": "Veneto",
+   "latitude": 45.43713,
+   "longitude": 12.33265,
+   "local_name": "Venezia"
+  }
+ ],
+ "JP": [
+  {
+   "name": "Tokyo",
+   "country": "Japan",
+   "admin1": "Tokyo",
+   "latitude": 35.6895,
+   "longitude": 139.69171,
+   "local_name": "東京"
+  },
+  {
+   "name": "Yokohama",
+   "country": "Japan",
+   "admin1": "Kanagawa",
+   "latitude": 35.43333,
+   "longitude": 139.65,
+   "local_name": "ヨコハマシ"
+  },
+  {
+   "name": "Osaka",
+   "country": "Japan",
+   "admin1": "Osaka",
+   "latitude": 34.69379,
+   "longitude": 135.50107,
+   "local_name": "大阪市"
+  },
+  {
+   "name": "Nagoya",
+   "country": "Japan",
+   "admin1": "Aichi",
+   "latitude": 35.18147,
+   "longitude": 136.9064,
+   "local_name": "名古屋"
+  },
+  {
+   "name": "Sapporo",
+   "country": "Japan",
+   "admin1": "Hokkaido",
+   "latitude": 43.06667,
+   "longitude": 141.35,
+   "local_name": "札幌市"
+  },
+  {
+   "name": "Kyoto",
+   "country": "Japan",
+   "admin1": "Kyoto",
+   "latitude": 35.02107,
+   "longitude": 135.75385,
+   "local_name": "京都市"
+  }
+ ],
+ "KE": [
+  {
+   "name": "Nairobi",
+   "country": "Kenya",
+   "admin1": "Nairobi County",
+   "latitude": -1.28333,
+   "longitude": 36.81667
+  },
+  {
+   "name": "Mombasa",
+   "country": "Kenya",
+   "admin1": "Mombasa County",
+   "latitude": -4.05466,
+   "longitude": 39.66359
+  },
+  {
+   "name": "Nakuru",
+   "country": "Kenya",
+   "admin1": "Nakuru County",
+   "latitude": -0.30719,
+   "longitude": 36.07225
+  },
+  {
+   "name": "Kisumu",
+   "country": "Kenya",
+   "admin1": "Kisumu County",
+   "latitude": -0.10221,
+   "longitude": 34.76171
+  }
+ ],
+ "KR": [
+  {
+   "name": "Seoul",
+   "country": "South Korea",
+   "admin1": "Seoul",
+   "latitude": 37.566,
+   "longitude": 126.9784,
+   "local_name": "서울특별시"
+  },
+  {
+   "name": "Busan",
+   "country": "South Korea",
+   "admin1": "Busan",
+   "latitude": 35.10168,
+   "longitude": 129.03004,
+   "local_name": "부산광역시"
+  },
+  {
+   "name": "Incheon",
+   "country": "South Korea",
+   "admin1": "Incheon",
+   "latitude": 37.45646,
+   "longitude": 126.70515,
+   "local_name": "인천광역시"
+  },
+  {
+   "name": "Daegu",
+   "country": "South Korea",
+   "admin1": "Daegu",
+   "latitude": 35.87028,
+   "longitude": 128.59111,
+   "local_name": "대구광역시"
+  },
+  {
+   "name": "Daejeon",
+   "country": "South Korea",
+   "admin1": "Daejeon",
+   "latitude": 36.34913,
+   "longitude": 127.38493,
+   "local_name": "대전광역시"
+  }
+ ],
+ "MA": [
+  {
+   "name": "White House",
+   "country": "Morocco",
+   "admin1": "Casablanca-Settat",
+   "latitude": 33.58831,
+   "longitude": -7.61138
+  },
+  {
+   "name": "Rabat",
+   "country": "Morocco",
+   "admin1": "Rabat-Salé-Kénitra",
+   "latitude": 34.01325,
+   "longitude": -6.83255
+  },
+  {
+   "name": "Fes",
+   "country": "Morocco",
+   "admin1": "Fès-Meknès",
+   "latitude": 34.03313,
+   "longitude": -5.00028
+  },
+  {
+   "name": "Tangier",
+   "country": "Morocco",
+   "admin1": "Tanger-Tetouan-Al Hoceima",
+   "latitude": 35.76727,
+   "longitude": -5.79975
+  },
+  {
+   "name": "Marrakesh",
+   "country": "Morocco",
+   "admin1": "Marrakesh-Safi",
+   "latitude": 31.63416,
+   "longitude": -7.99994
+  }
+ ],
+ "MX": [
+  {
+   "name": "Mexico City",
+   "country": "Mexico",
+   "admin1": "Mexico City",
+   "latitude": 19.42847,
+   "longitude": -99.12766
+  },
+  {
+   "name": "Puebla City",
+   "country": "Mexico",
+   "admin1": "Puebla",
+   "latitude": 19.03793,
+   "longitude": -98.20346
+  },
+  {
+   "name": "Guadalajara",
+   "country": "Mexico",
+   "admin1": "Jalisco",
+   "latitude": 20.66682,
+   "longitude": -103.39182
+  },
+  {
+   "name": "Monterrey",
+   "country": "Mexico",
+   "admin1": "Nuevo León",
+   "latitude": 25.67507,
+   "longitude": -100.31847
+  },
+  {
+   "name": "Cancún",
+   "country": "Mexico",
+   "admin1": "Quintana Roo",
+   "latitude": 21.17429,
+   "longitude": -86.84656
+  }
+ ],
+ "MY": [
+  {
+   "name": "Kuala Lumpur",
+   "country": "Malaysia",
+   "admin1": "Kuala Lumpur",
+   "latitude": 3.1412,
+   "longitude": 101.68653
+  },
+  {
+   "name": "Johor Bahru",
+   "country": "Malaysia",
+   "admin1": "Johor",
+   "latitude": 1.4655,
+   "longitude": 103.7578
+  },
+  {
+   "name": "Malacca",
+   "country": "Malaysia",
+   "admin1": "Melaka",
+   "latitude": 2.196,
+   "longitude": 102.2405
+  },
+  {
+   "name": "George Town",
+   "country": "Malaysia",
+   "admin1": "Penang",
+   "latitude": 5.41123,
+   "longitude": 100.33543
+  }
+ ],
+ "NG": [
+  {
+   "name": "Lagos",
+   "country": "Nigeria",
+   "admin1": "Lagos",
+   "latitude": 6.45407,
+   "longitude": 3.39467
+  },
+  {
+   "name": "Kano",
+   "country": "Nigeria",
+   "admin1": "Kano State",
+   "latitude": 12.00012,
+   "longitude": 8.51672
+  },
+  {
+   "name": "Ibadan",
+   "country": "Nigeria",
+   "admin1": "Oyo State",
+   "latitude": 7.37756,
+   "longitude": 3.90591
+  },
+  {
+   "name": "Abuja",
+   "country": "Nigeria",
+   "admin1": "FCT",
+   "latitude": 9.05785,
+   "longitude": 7.49508
+  },
+  {
+   "name": "Port Harcourt",
+   "country": "Nigeria",
+   "admin1": "Rivers State",
+   "latitude": 4.77742,
+   "longitude": 7.0134
+  }
+ ],
+ "NL": [
+  {
+   "name": "Amsterdam",
+   "country": "The Netherlands",
+   "admin1": "North Holland",
+   "latitude": 52.37403,
+   "longitude": 4.88969
+  },
+  {
+   "name": "Rotterdam",
+   "country": "The Netherlands",
+   "admin1": "South Holland",
+   "latitude": 51.9225,
+   "longitude": 4.47917
+  },
+  {
+   "name": "The Hague",
+   "country": "The Netherlands",
+   "admin1": "South Holland",
+   "latitude": 52.07667,
+   "longitude": 4.29861
+  },
+  {
+   "name": "Utrecht",
+   "country": "The Netherlands",
+   "admin1": "Utrecht",
+   "latitude": 52.09083,
+   "longitude": 5.12222
+  }
+ ],
+ "NO": [
+  {
+   "name": "Oslo",
+   "country": "Norway",
+   "admin1": "Oslo County",
+   "latitude": 59.91273,
+   "longitude": 10.74609
+  },
+  {
+   "name": "Bergen",
+   "country": "Norway",
+   "admin1": "Vestland",
+   "latitude": 60.39299,
+   "longitude": 5.32415
+  },
+  {
+   "name": "Trondheim",
+   "country": "Norway",
+   "admin1": "Trøndelag",
+   "latitude": 63.43049,
+   "longitude": 10.39506
+  },
+  {
+   "name": "Stavanger",
+   "country": "Norway",
+   "admin1": "Rogaland",
+   "latitude": 58.97005,
+   "longitude": 5.73332
+  }
+ ],
+ "NZ": [
+  {
+   "name": "Auckland",
+   "country": "New Zealand",
+   "admin1": "Auckland",
+   "latitude": -36.84853,
+   "longitude": 174.76349
+  },
+  {
+   "name": "Christchurch",
+   "country": "New Zealand",
+   "admin1": "Canterbury",
+   "latitude": -43.53333,
+   "longitude": 172.63333
+  },
+  {
+   "name": "Wellington",
+   "country": "New Zealand",
+   "admin1": "Wellington Region",
+   "latitude": -41.28664,
+   "longitude": 174.77557
+  },
+  {
+   "name": "Hamilton",
+   "country": "New Zealand",
+   "admin1": "Waikato Region",
+   "latitude": -37.78333,
+   "longitude": 175.28333
+  }
+ ],
+ "PE": [
+  {
+   "name": "Lima",
+   "country": "Peru",
+   "admin1": "Lima Province",
+   "latitude": -12.04318,
+   "longitude": -77.02824
+  },
+  {
+   "name": "Arequipa",
+   "country": "Peru",
+   "admin1": "Arequipa",
+   "latitude": -16.39889,
+   "longitude": -71.535
+  },
+  {
+   "name": "Trujillo",
+   "country": "Peru",
+   "admin1": "La Libertad",
+   "latitude": -8.11599,
+   "longitude": -79.02998
+  },
+  {
+   "name": "Cusco",
+   "country": "Peru",
+   "admin1": "Cuzco Department",
+   "latitude": -13.52264,
+   "longitude": -71.96734
+  }
+ ],
+ "PH": [
+  {
+   "name": "Quezon City",
+   "country": "Philippines",
+   "admin1": "National Capital Region",
+   "latitude": 14.6488,
+   "longitude": 121.0509
+  },
+  {
+   "name": "Davao City",
+   "country": "Philippines",
+   "admin1": "Davao Region",
+   "latitude": 7.07306,
+   "longitude": 125.61278
+  },
+  {
+   "name": "Manila",
+   "country": "Philippines",
+   "admin1": "National Capital Region",
+   "latitude": 14.6042,
+   "longitude": 120.9822
+  },
+  {
+   "name": "Cebu City",
+   "country": "Philippines",
+   "admin1": "Central Visayas",
+   "latitude": 10.31672,
+   "longitude": 123.89071
+  }
+ ],
+ "PK": [
+  {
+   "name": "Lahore",
+   "country": "Pakistan",
+   "admin1": "Punjab",
+   "latitude": 31.558,
+   "longitude": 74.35071,
+   "local_name": "لاہور"
+  },
+  {
+   "name": "Karachi",
+   "country": "Pakistan",
+   "admin1": "Sindh",
+   "latitude": 24.8608,
+   "longitude": 67.0104,
+   "local_name": "کراچی"
+  },
+  {
+   "name": "Faisalabad",
+   "country": "Pakistan",
+   "admin1": "Punjab",
+   "latitude": 31.41554,
+   "longitude": 73.08969,
+   "local_name": "فیصل آباد"
+  },
+  {
+   "name": "Rawalpindi",
+   "country": "Pakistan",
+   "admin1": "Punjab",
+   "latitude": 33.59733,
+   "longitude": 73.0479,
+   "local_name": "راولپنڈی"
+  },
+  {
+   "name": "Islamabad",
+   "country": "Pakistan",
+   "admin1": "Islamabad",
+   "latitude": 33.72148,
+   "longitude": 73.04329,
+   "local_name": "اسلام آباد"
+  }
+ ],
+ "PL": [
+  {
+   "name": "Warsaw",
+   "country": "Poland",
+   "admin1": "Masovian",
+   "latitude": 52.22977,
+   "longitude": 21.01178,
+   "local_name": "Warszawa"
+  },
+  {
+   "name": "Krakow",
+   "country": "Poland",
+   "admin1": "Lesser Poland",
+   "latitude": 50.06143,
+   "longitude": 19.93658,
+   "local_name": "Kraków"
+  },
+  {
+   "name": "Wroclaw",
+   "country": "Poland",
+   "admin1": "Lower Silesia",
+   "latitude": 51.1,
+   "longitude": 17.03333,
+   "local_name": "Wrocław"
+  },
+  {
+   "name": "Poznan",
+   "country": "Poland",
+   "admin1": "Greater Poland",
+   "latitude": 52.40692,
+   "longitude": 16.92993,
+   "local_name": "Poznań"
+  },
+  {
+   "name": "Gdansk",
+   "country": "Poland",
+   "admin1": "Pomerania",
+   "latitude": 54.35227,
+   "longitude": 18.64912,
+   "local_name": "Gdańsk"
+  }
+ ],
+ "PT": [
+  {
+   "name": "Lisbon",
+   "country": "Portugal",
+   "admin1": "Lisbon",
+   "latitude": 38.71667,
+   "longitude": -9.13333
+  },
+  {
+   "name": "Porto",
+   "country": "Portugal",
+   "admin1": "Porto",
+   "latitude": 41.14961,
+   "longitude": -8.61099
+  },
+  {
+   "name": "Braga",
+   "country": "Portugal",
+   "admin1": "Braga",
+   "latitude": 41.55032,
+   "longitude": -8.42005
+  },
+  {
+   "name": "Faro",
+   "country": "Portugal",
+   "admin1": "Faro",
+   "latitude": 37.01869,
+   "longitude": -7.92716
+  }
+ ],
+ "RO": [
+  {
+   "name": "Bucharest",
+   "country": "Romania",
+   "admin1": "București",
+   "latitude": 44.43225,
+   "longitude": 26.10626,
+   "local_name": "București"
+  },
+  {
+   "name": "Iași",
+   "country": "Romania",
+   "admin1": "Iași County",
+   "latitude": 47.16667,
+   "longitude": 27.6
+  },
+  {
+   "name": "Cluj-Napoca",
+   "country": "Romania",
+   "admin1": "Cluj County",
+   "latitude": 46.76667,
+   "longitude": 23.6
+  },
+  {
+   "name": "Timișoara",
+   "country": "Romania",
+   "admin1": "Timiș County",
+   "latitude": 45.75372,
+   "longitude": 21.22571
+  }
+ ],
+ "RU": [
+  {
+   "name": "Moscow",
+   "country": "Russia",
+   "admin1": "Moscow",
+   "latitude": 55.75222,
+   "longitude": 37.61556,
+   "local_name": "Москва"
+  },
+  {
+   "name": "St Petersburg",
+   "country": "Russia",
+   "admin1": "St.-Petersburg",
+   "latitude": 59.93863,
+   "longitude": 30.31413,
+   "local_name": "Санкт-Петербург"
+  },
+  {
+   "name": "Novosibirsk",
+   "country": "Russia",
+   "admin1": "Novosibirsk Oblast",
+   "latitude": 55.03442,
+   "longitude": 82.94339,
+   "local_name": "Новосибирск"
+  },
+  {
+   "name": "Yekaterinburg",
+   "country": "Russia",
+   "admin1": "Sverdlovsk Oblast",
+   "latitude": 56.8519,
+   "longitude": 60.6122,
+   "local_name": "Екатеринбург"
+  },
+  {
+   "name": "Kazan'",
+   "country": "Russia",
+   "admin1": "Tatarstan Republic",
+   "latitude": 55.78874,
+   "longitude": 49.12214,
+   "local_name": "Казань"
+  }
+ ],
+ "SA": [
+  {
+   "name": "Jeddah",
+   "country": "Saudi Arabia",
+   "admin1": "Mecca Region",
+   "latitude": 21.49012,
+   "longitude": 39.18624,
+   "local_name": "جدّة"
+  },
+  {
+   "name": "Riyadh",
+   "country": "Saudi Arabia",
+   "admin1": "Riyadh Region",
+   "latitude": 24.68773,
+   "longitude": 46.72185,
+   "local_name": "الرياض"
+  },
+  {
+   "name": "Medina",
+   "country": "Saudi Arabia",
+   "admin1": "Medina Region",
+   "latitude": 24.46861,
+   "longitude": 39.61417
+  },
+  {
+   "name": "Dammam",
+   "country": "Saudi Arabia",
+   "admin1": "Eastern Province",
+   "latitude": 26.43442,
+   "longitude": 50.10326,
+   "local_name": "الدمام"
+  }
+ ],
+ "SE": [
+  {
+   "name": "Stockholm",
+   "country": "Sweden",
+   "admin1": "Stockholm",
+   "latitude": 59.32938,
+   "longitude": 18.06871
+  },
+  {
+   "name": "Gothenburg",
+   "country": "Sweden",
+   "admin1": "Västra Götaland",
+   "latitude": 57.70716,
+   "longitude": 11.96679
+  },
+  {
+   "name": "Malmo",
+   "country": "Sweden",
+   "admin1": "Skåne",
+   "latitude": 55.60587,
+   "longitude": 13.00073,
+   "local_name": "Malmö"
+  },
+  {
+   "name": "Uppsala",
+   "country": "Sweden",
+   "admin1": "Uppsala",
+   "latitude": 59.85882,
+   "longitude": 17.63889
+  }
+ ],
+ "SG": [
+  {
+   "name": "Temasek",
+   "country": "Singapore",
+   "admin1": "",
+   "latitude": 1.28967,
+   "longitude": 103.85007
+  }
+ ],
+ "TH": [
+  {
+   "name": "Bangkok",
+   "country": "Thailand",
+   "admin1": "Bangkok",
+   "latitude": 13.75398,
+   "longitude": 100.50144,
+   "local_name": "กรุงเทพฯ"
+  },
+  {
+   "name": "Chiang Mai",
+   "country": "Thailand",
+   "admin1": "Chiang Mai",
+   "latitude": 18.79038,
+   "longitude": 98.98468,
+   "local_name": "แม่ริม เชียงใหม่"
+  },
+  {
+   "name": "Pattaya",
+   "country": "Thailand",
+   "admin1": "Chon Buri",
+   "latitude": 12.93333,
+   "longitude": 100.88333,
+   "local_name": "พัทยา"
+  },
+  {
+   "name": "Phuket",
+   "country": "Thailand",
+   "admin1": "Phuket",
+   "latitude": 7.89059,
+   "longitude": 98.3981,
+   "local_name": "เทศบาลนครภูเก็ต"
+  }
+ ],
+ "TR": [
+  {
+   "name": "Istanbul",
+   "country": "Türkiye",
+   "admin1": "Istanbul",
+   "latitude": 41.01384,
+   "longitude": 28.94966,
+   "local_name": "İstanbul"
+  },
+  {
+   "name": "Ankara",
+   "country": "Türkiye",
+   "admin1": "Ankara",
+   "latitude": 39.91987,
+   "longitude": 32.85427
+  },
+  {
+   "name": "Bursa",
+   "country": "Türkiye",
+   "admin1": "Bursa Province",
+   "latitude": 40.19559,
+   "longitude": 29.06013
+  },
+  {
+   "name": "Izmir",
+   "country": "Türkiye",
+   "admin1": "İzmir Province",
+   "latitude": 38.41273,
+   "longitude": 27.13838,
+   "local_name": "İzmir"
+  },
+  {
+   "name": "Antalya",
+   "country": "Türkiye",
+   "admin1": "Antalya",
+   "latitude": 36.90812,
+   "longitude": 30.69556
+  }
+ ],
+ "TW": [
+  {
+   "name": "Taipei",
+   "country": "Taiwan",
+   "admin1": "Taiwan",
+   "latitude": 25.05306,
+   "longitude": 121.52639,
+   "local_name": "台北市"
+  },
+  {
+   "name": "Kaohsiung",
+   "country": "Taiwan",
+   "admin1": "Takao",
+   "latitude": 22.61626,
+   "longitude": 120.31333,
+   "local_name": "高雄"
+  },
+  {
+   "name": "Taichung",
+   "country": "Taiwan",
+   "admin1": "Taiwan",
+   "latitude": 24.1469,
+   "longitude": 120.6839,
+   "local_name": "臺中市"
+  },
+  {
+   "name": "Tainan City",
+   "country": "Taiwan",
+   "admin1": "Taiwan",
+   "latitude": 22.99083,
+   "longitude": 120.21333,
+   "local_name": "臺南市"
+  }
+ ],
+ "UA": [
+  {
+   "name": "Kyiv",
+   "country": "Ukraine",
+   "admin1": "Kyiv City",
+   "latitude": 50.45466,
+   "longitude": 30.5238,
+   "local_name": "Київ"
+  },
+  {
+   "name": "Kharkiv",
+   "country": "Ukraine",
+   "admin1": "Kharkivs’ka Oblast’",
+   "latitude": 49.98081,
+   "longitude": 36.25272,
+   "local_name": "Харків"
+  },
+  {
+   "name": "Khadjibey",
+   "country": "Ukraine",
+   "admin1": "Odesa",
+   "latitude": 46.48572,
+   "longitude": 30.74383,
+   "local_name": "Одеса"
+  },
+  {
+   "name": "Dnipro",
+   "country": "Ukraine",
+   "admin1": "Dnipropetrovsk",
+   "latitude": 48.46664,
+   "longitude": 35.04066,
+   "local_name": "Дніпро"
+  },
+  {
+   "name": "Lviv",
+   "country": "Ukraine",
+   "admin1": "Lviv",
+   "latitude": 49.83826,
+   "longitude": 24.02324,
+   "local_name": "Львів"
+  }
+ ],
+ "US": [
+  {
+   "name": "New York",
+   "country": "United States",
+   "admin1": "New York",
+   "latitude": 40.71427,
+   "longitude": -74.00597
+  },
+  {
+   "name": "Los Angeles",
+   "country": "United States",
+   "admin1": "California",
+   "latitude": 34.05223,
+   "longitude": -118.24368
+  },
+  {
+   "name": "Chicago",
+   "country": "United States",
+   "admin1": "Illinois",
+   "latitude": 41.85003,
+   "longitude": -87.65005
+  },
+  {
+   "name": "Houston",
+   "country": "United States",
+   "admin1": "Texas",
+   "latitude": 29.76328,
+   "longitude": -95.36327
+  },
+  {
+   "name": "Phoenix",
+   "country": "United States",
+   "admin1": "Arizona",
+   "latitude": 33.44838,
+   "longitude": -112.07404
+  },
+  {
+   "name": "San Diego",
+   "country": "United States",
+   "admin1": "California",
+   "latitude": 32.71571,
+   "longitude": -117.16472
+  }
+ ],
+ "VN": [
+  {
+   "name": "Ho Chi Minh City",
+   "country": "Vietnam",
+   "admin1": "Ho Chi Minh",
+   "latitude": 10.82302,
+   "longitude": 106.62965,
+   "local_name": "TPHCM"
+  },
+  {
+   "name": "Hanoi",
+   "country": "Vietnam",
+   "admin1": "Hanoi",
+   "latitude": 21.0245,
+   "longitude": 105.84117,
+   "local_name": "Hà Nội"
+  },
+  {
+   "name": "Da Nang",
+   "country": "Vietnam",
+   "admin1": "Da Nang",
+   "latitude": 16.06778,
+   "longitude": 108.22083,
+   "local_name": "Đà Nẵng"
+  }
+ ],
+ "ZA": [
+  {
+   "name": "Johannesburg",
+   "country": "South Africa",
+   "admin1": "Gauteng",
+   "latitude": -26.20227,
+   "longitude": 28.04363
+  },
+  {
+   "name": "Cape Town",
+   "country": "South Africa",
+   "admin1": "Western Cape",
+   "latitude": -33.92584,
+   "longitude": 18.42322
+  },
+  {
+   "name": "Durban",
+   "country": "South Africa",
+   "admin1": "KwaZulu-Natal",
+   "latitude": -29.8579,
+   "longitude": 31.0292
+  },
+  {
+   "name": "Pretoria",
+   "country": "South Africa",
+   "admin1": "Gauteng",
+   "latitude": -25.74486,
+   "longitude": 28.18783
+  }
+ ]
+}

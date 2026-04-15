@@ -1,166 +1,162 @@
-# WeatherWear: AI-Powered Outfit Recommendations Based on Weather Predictions
+# WeatherWear
 
-## PEAS / Agent Analysis
+**AI-powered outfit recommendations based on real-time weather data.**
 
-We’ve all had those days where we step outside and immediately regret our outfit choice—maybe you wore a hoodie on a hot day or forgot a raincoat when it started pouring. That’s exactly what this AI agent is here to solve!
+Built as the final project for **CSE 150A** (Introduction to Artificial Intelligence: Probabilistic Reasoning and Decision-Making) at **UC San Diego**.
 
-This smart assistant doesn’t just predict the weather—it also tells you what to wear so you can stay comfortable and prepared, no matter what the forecast brings.
+<p align="center">
+  <img src="docs/screenshot.png" alt="WeatherWear demo screenshot" width="700" />
+</p>
 
-### PEAS (Performance Measure, Environment, Actuators, Sensors)
+## What It Does
 
-| Component | How It Works in Our AI |
-|------|----------------------|
-| Performance Measure | The agent is judged by how accurately it predicts the weather and how well it recommends clothing based on that prediction. If the weather forecast is right but the clothing suggestion is off (e.g., recommending shorts on a freezing day), that’s a failure. The goal is to keep users comfortable while ensuring accurate weather forecasts. |                 |
-| Environment | The AI operates using Seattle’s historical weather data (2012-2015) and would ideally integrate with real-time weather updates in the future. It considers things like rain, temperature, and wind speed to make both forecasts and outfit suggestions. |
-| Actuators (Outputs) | Instead of just predicting “Rain” or “Sunny,” the AI recommends what you should wear based on the weather, including: <ul><li>Shirt: Short sleeves or long sleeves?</li><li>Bottoms: Shorts or pants?</li><li>Outerwear: No jacket, raincoat, windbreaker, or snow jacket?</li></ul> The goal is to remove the guesswork from getting dressed each day. |                |
-| Sensors (Inputs) | The model takes in key weather factors to make predictions: <ul><li>Precipitation (mm): Helps determine if a raincoat is needed.</li><li>Temperature Max (°C): Influences shirt choice.</li><li>Temperature Min (°C): Affects whether shorts or pants are recommended.</li><li>Wind Speed (m/s): Determines if a windbreaker is necessary.</li></ul> These factors work together to ensure the AI makes weather-appropriate outfit choices. |
-## Background & Purpose
+WeatherWear is a utility-based AI agent that recommends what to wear based on the weather. Select any city in the world and the agent will:
 
-The whole idea behind this utility-based agent is simple: knowing the weather isn’t enough—people need to know how to dress for it. Instead of just giving you a generic weather forecast, this AI helps you make smarter clothing choices, so you’re always prepared.
+- Fetch real-time and forecasted weather data (via the free [Open-Meteo API](https://open-meteo.com/))
+- Classify weather conditions using a **Random Forest model** trained on historical Seattle weather (2012-2015)
+- Recommend a full outfit (top, bottom, outerwear, footwear, accessories) with a conversational, emoji-rich explanation
+- Show a **weekly view** (Sunday-Saturday) with outfit summaries for each day
 
-We built this system using a Random Forest Classifier, carefully optimizing it to accurately predict both common and rare weather conditions (like fog or drizzle, which are often misclassified in other models). With this approach, the AI is better at handling real-world weather variations and giving more reliable recommendations.
+The entire system runs without any paid APIs or LLMs.
 
-So next time you’re wondering, *“Should I bring a jacket?”*—just ask the AI. It’s got you covered!
+## Live Demo
 
-## Agent Setup, Data Preprocessing, Training setup
+**[weatherwear-demo.onrender.com](https://weatherwear-demo.onrender.com)** (free tier — first load may take ~30s to wake up)
 
-### Exploring the Dataset & Why It Matters
+## Features
 
-Ever stepped outside and instantly regretted your outfit choice? Maybe you didn’t check the forecast, or maybe the forecast wasn’t detailed enough to tell you what to actually wear. That’s exactly what this AI is built to fix.
+- **City search** with smart country detection (type "Japan" and get Tokyo, Osaka, Kyoto, etc.)
+- **Geolocation** support ("Use my location")
+- **Native language names** for non-Latin cities (Tokyo → 東京, Cairo → القاهرة, Munich → München)
+- **Clickable weekly forecast** — click any day to see the full breakdown
+- **Past vs. future tense** — past days use retrospective language, future days use forecast language
+- **Dynamic weather themes** — background changes based on predicted conditions (sun, rain, snow, etc.)
+- **Celsius / Fahrenheit toggle**
+- **Methodology section** explaining the full decision pipeline on the page itself
 
-Instead of just saying, "It’s going to rain today," our model helps you decide:
+## How It Works
 
-<ul><li>Should you wear a jacket? If so, what kind?</li>
-<li>Is it warm enough for shorts, or should you stick with pants?</li>
-<li>Will the wind make it feel colder than it actually is?</li></ul>
+```
+Weather Data (Open-Meteo API)
+        │
+        ▼
+┌─────────────────────┐
+│  4 Features per Day │  precipitation (mm), temp max/min (°C), wind speed (m/s)
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  Random Forest      │  400 trees, balanced subsampling
+│  Classifier         │  trained on Seattle weather (2012-2015)
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  Weather Label      │  sun / rain / drizzle / snow / fog
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  Outfit Policy      │  rule-based: label + raw features → clothing
+└─────────┬───────────┘
+          │
+          ▼
+┌─────────────────────┐
+│  Explanation Engine  │  template-based conversational output (no LLM)
+└─────────────────────┘
+```
 
-To do this, we trained the AI on Seattle’s historical weather data (2012-2015), which includes everything from temperature to wind speed.
+### Model Performance
 
-### What's in the Dataset?
+| Weather | Precision | Recall | F1   |
+|---------|-----------|--------|------|
+| Rain    | 0.97      | 0.91   | 0.94 |
+| Fog     | 0.87      | 0.96   | 0.91 |
+| Snow    | 0.89      | 0.89   | 0.89 |
+| Drizzle | 0.82      | 0.91   | 0.86 |
+| Sun     | 0.76      | 0.92   | 0.83 |
 
-Each row in the dataset represents one day of weather, giving the AI key details to make smart predictions.
+## PEAS Analysis
 
-| Feature | What It Represents | Why It's Important |
-|------|----------------------| ------------------- |
-| Date | 	The specific day (YYYY-MM-DD). | Not directly used, but seasonal patterns matter. |
-| Precipitation | Rain or snowfall that day (mm). | Helps decide if a raincoat or snow jacket is needed. |
-| Temp Max | The highest temperature that day (°C). | Determines if short vs. long sleeves are best. |
-| Temp Min | The lowest temperature that day (°C). | Helps pick between shorts or pants. | Determines if a windbreaker is necessary. |
-| Wind Speed | How strong the wind was (m/s). | Determines if a windbreaker is necessary. |
-| Weather | The overall condition (rain, sun, drizzle, fog, snow). | This is what the AI predicts! |
+| Component       | Description |
+|-----------------|-------------|
+| **Performance** | Accuracy of weather classification and appropriateness of outfit recommendations |
+| **Environment** | Real-world weather for any city (Open-Meteo API) + historical Seattle data for training |
+| **Actuators**   | Outfit recommendations (top, bottom, outerwear, footwear, accessories) with natural-language explanations |
+| **Sensors**     | Precipitation (mm), temp max/min (°C), wind speed (m/s) from Open-Meteo forecasts or manual CLI input |
 
-Below is a diagram of the general overview of what each variable/factor affects:
-![Overview](overview.png)
+## Tech Stack
 
+- **Backend**: Python, FastAPI, scikit-learn, Jinja2
+- **Frontend**: HTML, CSS, vanilla JavaScript (no framework)
+- **ML Model**: Random Forest (scikit-learn) trained on [Seattle Weather dataset](https://www.kaggle.com/datasets/ananthr1/weather-prediction/data)
+- **APIs**: [Open-Meteo](https://open-meteo.com/) (weather + geocoding), [Nominatim](https://nominatim.openstreetmap.org/) (reverse geocoding)
+- **Hosting**: [Render](https://render.com/) (free tier)
 
-### How These Features Help the AI Make Better Clothing Recommendations
-🔹 Temperature (`temp_max`, `temp_min`) → Affects shirt choice and bottom wear
-    <ul><li>Hot day? → Short sleeves & shorts</li>
-    <li>Chilly morning? → Long sleeves & pants</li></ul>
+## Run Locally
 
-🌧 Precipitation (`precipitation`) → Tells us if a raincoat or snow jacket is needed
-    <ul><li>Light rain? → Raincoat, but no need for extra layers</li>
-    <li>Heavy snow? → Snow jacket & extra warmth</li></ul>
+```bash
+# Clone and set up
+git clone https://github.com/joshleh/WeatherWear.git
+cd WeatherWear
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
 
-💨 Wind Speed (`wind`) → Helps decide if a windbreaker is necessary
-    <ul><li>Breezy but warm? → No jacket needed</li>
-    <li>Strong winds? → Windbreaker, even if it's sunny</li></ul>
+# Start the web app
+uvicorn weatherwear.webapp:app --reload --port 8010
+```
 
-☀️ Weather Type (`weather`) → The AI’s main prediction
-    <ul><li>This is the final decision that determines all clothing recommendations.</li></ul>
+Then open **http://localhost:8010**.
 
-### How It All Comes Together
+### CLI (offline, no network needed)
 
-Instead of making generic weather predictions, the AI looks at multiple factors to give recommendations that actually make sense.
+```bash
+# Train the model
+weatherwear train --data seattle-weather.csv
 
-For instance:
-<ul><li>Cold + Rainy + Windy? → The AI suggests a long-sleeve shirt, pants, and a raincoat or windbreaker.</li>
-<li>Warm + Sunny? → The AI suggests a short-sleeve shirt and shorts—no jacket needed.</li>
-<li>Cold + Snowing? → The AI suggests a snow jacket, long-sleeve shirt, and pants.</li></ul>
+# Demo from a date in the dataset
+weatherwear demo date --date 2012-01-01
 
-This means no more standing in front of your closet, wondering if you’ll freeze or sweat through your clothes. The AI does the thinking for you.
+# Demo with manual weather inputs
+weatherwear demo manual --precipitation 3.2 --temp-max 11 --temp-min 5 --wind 6.5
+```
 
-## Training the model
-## Conclusion / Results
+## Project Structure
 
-Now that we’ve trained our model, it’s time to answer the big question: How well does it actually work?
+```
+src/weatherwear/
+    agent.py           Sense → Think → Act orchestration
+    model.py           Random Forest training, persistence, inference
+    outfit.py          Rule-based outfit policy
+    explain.py         Template-based explanation engine (no LLM)
+    weather.py         Open-Meteo API client + city search with caching
+    webapp.py          FastAPI web application
+    cli.py             Command-line interface
+    types.py           Shared data types
+    country_cities.json  Pre-computed city data for 50+ countries
 
-Our AI’s goal wasn’t just to predict the weather—it also needed to give practical outfit recommendations so people could dress appropriately. Let’s break down how well it performed, what worked, what didn’t, and what could be improved.
+web/
+    templates/         Jinja2 HTML template
+    static/            CSS styles
 
-### 1. How did the AI Perform?
+seattle-weather.csv    Training dataset (Seattle 2012-2015)
+render.yaml            Render deployment blueprint
+```
 
-We evaluated the model using accuracy, precision, recall, and F1-score, and here’s what we found:
-- Strong overall accuracy – The model successfully predicts common weather conditions (Rain, Sun) and significantly improved its ability to detect rare ones (Drizzle, Fog, Snow).
-- Balanced precision & recall – After manually oversampling rare weather types, the model was much better at detecting them while still maintaining strong performance for common ones.
-- Practical clothing recommendations – The AI reliably suggested jackets on rainy days, shorts on warm days, and windbreakers when it’s windy.
+## Limitations
 
-| Weather Condition | Precision | Recall | F1-Score |
-|------|------| ------ | ------ |
-| Rain | 0.98 | 0.88 | 0.93 |
-| Sun | 0.86 | 0.88 | 0.87 |
-| Drizzle | 0.82 | 0.91 | 0.86 | 
-| Fog | 0.87 | 0.96 | 0.91 |
-| Snow | 0.89 | 0.89 | 0.89 | 
+- The model is trained on Seattle weather (2012-2015). Cities with extreme climates may get unusual classifications, though the outfit policy still uses raw feature values as a fallback.
+- The explanation engine is template-based and deterministic — not LLM-generated. This keeps the project 100% free with no API keys.
+- Open-Meteo provides up to 7 days of forecast data; accuracy naturally decreases further out.
 
-### 2. What the AI Got Right
-- Rain & Sun were predicted very accurately. These are the most common weather types, so the model had plenty of data to learn from.
-- Rare weather types (Drizzle, Fog, Snow) improved significantly after balancing the dataset. Originally, the model struggled with these, but now they are detected far more reliably.
-- Realistic clothing recommendations. Instead of just predicting the weather, the AI connected the forecast to actual human decisions—choosing short vs. long sleeves, jackets vs. no jackets, and shorts vs. pants.
+## License
 
-### 3. Where the AI Struggled
+This project was created for educational purposes as part of CSE 150A at UC San Diego.
 
-- Handling Edge Cases (e.g., Light Rain vs. Drizzle) – Some borderline cases were tricky, especially between Drizzle and Rain or Fog and Cloudy conditions. The AI sometimes misclassified these because there isn’t always a clear distinction in the dataset.
-- Wind-Based Recommendations – The AI could detect when it was windy, but deciding when wind speed actually makes someone feel cold was a bit more complicated. Right now, the windbreaker recommendation is based only on speed, but humidity and temperature might play a role too.
-- Better Seasonal Adjustments – The model doesn't currently factor in seasonality (e.g., Seattle winters are colder than summer). This means that some temperature-based clothing recommendations could be improved by understanding seasonal trends.
+## Acknowledgments
 
-### 4. How Can We Make It Even Better?
-1. Improve Drizzle & Fog Predictions with More Context
-- The AI could use humidity levels or visibility data to better distinguish Fog from Cloudy days.
-- Adding rain intensity measurements could help separate Drizzle from Rain more accurately.
-
-2. Tune Windbreaker Recommendations
-- Instead of recommending a windbreaker based only on wind speed, the model could factor in feels-like temperature (wind chill).
-- We could also look at how wind speed affects temperature perception—a 10°C day with strong wind feels much colder than one without wind.
-
-3. Introduce Seasonal Awareness
-- Right now, the AI treats a 10°C day the same way in summer and winter, but in reality, people dress differently in different seasons.
-- Adding month-based adjustments (e.g., people wear jackets earlier in fall than in spring) could improve clothing recommendations.
-
-4. Try a More Advanced Model
-- While Random Forest worked well, we could try Gradient Boosting (XGBoost) to see if a more refined model improves predictions.
-- This could be useful for subtle differences between weather types that Random Forest sometimes struggles with.
-
-### 5. Final Thoughts: Is This AI Ready for the Real World?
-- Yes! This AI is already a big step up from just checking the weather—it actually helps people decide what to wear based on the forecast.
-- It gets common weather types right, and now it also performs well on rarer conditions like drizzle, fog, and snow.
-- There’s still room for improvement, especially in edge cases, wind handling, and seasonal adjustments, but overall, the AI does exactly what it was designed to do—help people dress smarter for the weather.
-- With some additional refinements, this AI could be integrated into real-world weather apps to make dressing for the day effortless!
-
-## Addtional Notes
-Throughout this project, various tools, datasets, and AI assistance were used to develop, refine, and improve the weather prediction and outfit recommendation model. Below is a detailed list of resources used, ensuring full transparency and proper attribution.
-### 1. Dataset Used
-- Seattle Weather Dataset (2012 - 2015), source: https://www.kaggle.com/datasets/ananthr1/weather-prediction/data
-  - This dataset provided historical weather data, including precipitation, temperature, wind speed, and overall weather conditions
-
-### 2. Libraries & Tools
-Several open-source Python libraries were used to preprocess the data, build the machine learning model, and generate visualizations:
-- Data Processing & Analysis:
-    - `pandas` — Data handling and manipulation
-    - `numpy` — Numerical computations
-- Machine Learning & Model Training:
-    - `scikit-learn` — Used for Random Forest classification, model evaluation, and train-test splitting
-- Data Visualization
-    - `matplotlib` — Used for generating plots and heatmaps
-    - `seaborn` — Enhanced data visualization for feature relationships
-- Class Imbalance Handling:
-    - sklearn.utils.resample — Used for manual oversampling of underrepresented weather classes
-
-### 3. Generative AI Assistance (ChatGPT - OpenAI)
-Role: ChatGPT was used throughout the project to:
-<ul><li>optimize model choices and parameter tuning</li>
-<li>assist in debugging and evaluating model performance</li></ul>
-
-### 4. Other References & Research
-- Standard machine learning documentation and resources were consulted, including:
-  - Scikit-learn Documentation, source: https://scikit-learn.org/0.21/documentation.html
-  - Matplotlib Documentation, source: https://matplotlib.org/stable/index.html
+- **Dataset**: [Seattle Weather (Kaggle)](https://www.kaggle.com/datasets/ananthr1/weather-prediction/data)
+- **Weather API**: [Open-Meteo](https://open-meteo.com/) — free, no API key required
+- **Geocoding**: [Nominatim / OpenStreetMap](https://nominatim.openstreetmap.org/) — free, open-source

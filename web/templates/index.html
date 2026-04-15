@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WeatherWear</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1>👕 WeatherWear</h1>
+          <p class="subtitle">AI-Powered Outfit Recommendations &middot; CSE 150A Final Project &middot; UC San Diego</p>
+        </div>
+        <div class="unit-toggle" id="unitToggle">
+          <button class="unit-btn unit-active" data-unit="C" aria-label="Switch to Celsius">°C</button>
+          <button class="unit-btn" data-unit="F" aria-label="Switch to Fahrenheit">°F</button>
+        </div>
+      </header>
+
+      <!-- City picker -->
+      <section id="picker" class="card">
+        <h2>Where are you?</h2>
+        <div class="search-row">
+          <input id="citySearch" type="text" placeholder="Search for a city…" autocomplete="off" aria-label="Search for a city" />
+          <button id="geoBtn" class="btn btn-secondary" type="button">📍 Use my location</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+        <div class="popular">
+          <span class="muted">Popular:</span>
+          <button class="chip" data-lat="32.72" data-lon="-117.16" data-city="San Diego, California, United States">San Diego</button>
+          <button class="chip" data-lat="47.61" data-lon="-122.33" data-city="Seattle, Washington, United States">Seattle</button>
+          <button class="chip" data-lat="34.05" data-lon="-118.24" data-city="Los Angeles, California, United States">Los Angeles</button>
+          <button class="chip" data-lat="37.77" data-lon="-122.42" data-city="San Francisco, California, United States">San Francisco</button>
+          <button class="chip" data-lat="40.71" data-lon="-74.01" data-city="New York, New York, United States">New York</button>
+          <button class="chip" data-lat="41.88" data-lon="-87.63" data-city="Chicago, Illinois, United States">Chicago</button>
+          <button class="chip" data-lat="51.51" data-lon="-0.13" data-city="London, England, United Kingdom">London</button>
+          <button class="chip" data-lat="35.68" data-lon="139.69" data-city="Tokyo, Tokyo, Japan">Tokyo</button>
+        </div>
+      </section>
+
+      <!-- Loading -->
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <span>Fetching forecast&hellip;</span>
+      </div>
+
+      <!-- Error -->
+      <div id="errorBox" class="card alert hidden"></div>
+
+      <!-- Today -->
+      <section id="todayCard" class="card today-card hidden"></section>
+
+      <!-- Week -->
+      <section id="weekSection" class="hidden">
+        <h2 class="section-title">This Week</h2>
+        <div id="weekStrip" class="week-strip"></div>
+      </section>
+
+      <!-- Methodology -->
+      <section class="card methodology">
+        <h2>How it works</h2>
+        <p class="muted" style="margin-bottom:14px">
+          WeatherWear is a utility-based AI agent built for CSE 150A at UC San Diego.
+          It fetches real weather data, classifies conditions with a machine-learning model,
+          then applies a rule-based outfit policy. Here's exactly how each recommendation is made.
+        </p>
+
+        <div class="method-grid">
+          <div class="method-block">
+            <h3>1. Weather data</h3>
+            <p>Real-time and forecasted daily weather is fetched from the
+            <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo API</a>
+            (free, no API key). Four features are collected for each day:</p>
+            <ul>
+              <li>💧 <strong>Precipitation</strong> (mm)</li>
+              <li>🌡️ <strong>Temp max</strong> (°C)</li>
+              <li>🌡️ <strong>Temp min</strong> (°C)</li>
+              <li>💨 <strong>Wind speed</strong> (m/s)</li>
+            </ul>
+          </div>
+
+          <div class="method-block">
+            <h3>2. ML weather classification</h3>
+            <p>A <strong>Random Forest classifier</strong> (400 trees, balanced subsampling) trained on
+            Seattle historical weather data (2012–2015) predicts a weather label from the four features:</p>
+            <ul>
+              <li>☀️ Sun</li>
+              <li>🌧️ Rain</li>
+              <li>🌦️ Drizzle</li>
+              <li>❄️ Snow</li>
+              <li>🌁 Fog</li>
+            </ul>
+          </div>
+
+          <div class="method-block">
+            <h3>3. Outfit policy — top &amp; bottom</h3>
+            <p>Based on the <strong>average temperature</strong> (avg of max + min):</p>
+            <table class="method-table">
+              <thead><tr><th>Avg temp</th><th>Top</th><th>Bottom</th></tr></thead>
+              <tbody>
+                <tr><td>≥ 22 °C</td><td>Short-sleeve shirt</td><td>Shorts</td></tr>
+                <tr><td>14 – 21 °C</td><td>T-shirt / light long-sleeve</td><td>Pants</td></tr>
+                <tr><td>6 – 13 °C</td><td>Long-sleeve shirt</td><td>Pants</td></tr>
+                <tr><td>&lt; 6 °C</td><td>Warm base layer + long-sleeve</td><td>Warm pants</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="method-block">
+            <h3>4. Outfit policy — outerwear</h3>
+            <p>Outerwear is chosen by the predicted label and raw feature values:</p>
+            <table class="method-table">
+              <thead><tr><th>Condition</th><th>Outerwear</th></tr></thead>
+              <tbody>
+                <tr><td>Rain / drizzle <em>or</em> precip ≥ 1 mm</td><td>🧥 Rain jacket</td></tr>
+                <tr><td>Snow</td><td>🧥 Insulated waterproof jacket</td></tr>
+                <tr><td>Wind ≥ 7.5 m/s (no rain/snow)</td><td>🧥 Windbreaker</td></tr>
+                <tr><td>Otherwise</td><td>None needed</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="method-block">
+            <h3>5. Footwear &amp; accessories</h3>
+            <table class="method-table">
+              <thead><tr><th>Condition</th><th>Item</th></tr></thead>
+              <tbody>
+                <tr><td>Rain / drizzle / snow</td><td>👟 Water-resistant shoes</td></tr>
+                <tr><td>Otherwise</td><td>👟 Comfortable sneakers</td></tr>
+                <tr><td>Rain / drizzle</td><td>☂️ Umbrella (optional)</td></tr>
+                <tr><td>Snow</td><td>🧤 Gloves + 🧢 Beanie</td></tr>
+                <tr><td>Fog</td><td>🦺 Reflective layer</td></tr>
+                <tr><td>Avg temp ≤ 4 °C</td><td>🧣 Scarf</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="method-block">
+            <h3>6. Explanation</h3>
+            <p>A template-based engine (no LLM) generates a conversational summary
+            from the predicted label, raw weather features, and the outfit chosen.
+            This keeps the demo <strong>100% free</strong> with no API keys.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const citySearch = document.getElementById('citySearch');
+      const geoBtn = document.getElementById('geoBtn');
+      const searchResults = document.getElementById('searchResults');
+      const loading = document.getElementById('loading');
+      const errorBox = document.getElementById('errorBox');
+      const todayCard = document.getElementById('todayCard');
+      const weekSection = document.getElementById('weekSection');
+      const weekStrip = document.getElementById('weekStrip');
+
+      let searchTimeout = null;
+      let unit = 'C';
+      let lastData = null;
+      let lastCity = null;
+
+      const ITEM_EMOJI = {
+        "Short-Sleeve Shirt": "👕", "T-Shirt or Light Long-Sleeve": "👕",
+        "Long-Sleeve Shirt": "👕", "Warm Base Layer + Long-Sleeve": "👕",
+        "Shorts": "🩳", "Pants": "👖", "Warm Pants": "👖",
+        "Rain Jacket": "🧥", "Insulated Waterproof Jacket": "🧥", "Windbreaker": "🧥",
+        "Water-Resistant Shoes": "👢", "Comfortable Sneakers": "👟",
+        "Umbrella (Optional)": "☂️", "Gloves": "🧤", "Beanie": "🧢",
+        "Reflective Layer (Low Visibility)": "🦺", "Scarf": "🧣"
+      };
+      function ie(item, fallback) { return (ITEM_EMOJI[item] || fallback || '') + ' ' + item; }
+
+      function cToF(c) { return c * 9 / 5 + 32; }
+      function tempStr(c) {
+        if (unit === 'F') return cToF(c).toFixed(0) + '°F';
+        return c.toFixed(0) + '°C';
+      }
+      function tempPair(max, min) {
+        if (unit === 'F') return cToF(max).toFixed(0) + '° / ' + cToF(min).toFixed(0) + '°F';
+        return max.toFixed(0) + '° / ' + min.toFixed(0) + '°C';
+      }
+      function convertExplanation(text) {
+        if (unit === 'C') return text;
+        return text.replace(/(-?\d+)°C/g, (_, n) => cToF(parseFloat(n)).toFixed(0) + '°F');
+      }
+
+      /* ---------- unit toggle ---------- */
+
+      document.getElementById('unitToggle').addEventListener('click', e => {
+        const btn = e.target.closest('.unit-btn');
+        if (!btn || btn.dataset.unit === unit) return;
+        unit = btn.dataset.unit;
+        document.querySelectorAll('.unit-btn').forEach(b => b.classList.remove('unit-active'));
+        btn.classList.add('unit-active');
+        if (lastData) {
+          renderToday(lastData.today, lastCity);
+          renderWeek(lastData.week);
+        }
+      });
+
+      /* ---------- city search ---------- */
+
+      citySearch.addEventListener('input', () => {
+        clearTimeout(searchTimeout);
+        const q = citySearch.value.trim();
+        if (q.length < 2) { searchResults.innerHTML = ''; return; }
+        searchTimeout = setTimeout(async () => { /* debounce */
+          try {
+            const res = await fetch('/api/cities?q=' + encodeURIComponent(q));
+            const cities = await res.json();
+            searchResults.innerHTML = cities.map(c => {
+              const parts = [c.name];
+              if (c.local_name) parts[0] += ' (' + c.local_name + ')';
+              if (c.admin1 && c.admin1 !== c.name && c.admin1 !== c.country) parts.push(c.admin1);
+              if (c.country && c.country !== c.name) parts.push(c.country);
+              const label = parts.join(', ');
+              const cityLabel = label.replace(/ \(.*?\)/, '');
+              return '<button class="search-item" data-lat="' + c.latitude +
+                     '" data-lon="' + c.longitude +
+                     '" data-city="' + cityLabel + '">' + label + '</button>';
+            }).join('');
+            searchResults.querySelectorAll('.search-item').forEach(btn => {
+              btn.addEventListener('click', () => {
+                loadForecast(btn.dataset.lat, btn.dataset.lon, btn.dataset.city);
+                searchResults.innerHTML = '';
+                citySearch.value = btn.dataset.city;
+              });
+            });
+          } catch (_) { /* silent */ }
+        }, 450);
+      });
+
+      /* ---------- popular chips ---------- */
+
+      document.querySelectorAll('.chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          loadForecast(btn.dataset.lat, btn.dataset.lon, btn.dataset.city);
+          citySearch.value = btn.dataset.city;
+          searchResults.innerHTML = '';
+        });
+      });
+
+      /* ---------- geolocation ---------- */
+
+      geoBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) { alert('Geolocation not supported.'); return; }
+        geoBtn.textContent = '📍 Detecting…';
+        navigator.geolocation.getCurrentPosition(
+          async pos => {
+            geoBtn.textContent = '📍 Use my location';
+            const lat = pos.coords.latitude;
+            const lon = pos.coords.longitude;
+            let cityName = 'Your Location';
+            try {
+              const res = await fetch('/api/reverse?lat=' + lat + '&lon=' + lon);
+              const data = await res.json();
+              if (data.label) cityName = 'Your Location (' + data.label + ')';
+            } catch (_) { /* fall through with generic label */ }
+            loadForecast(lat, lon, cityName);
+          },
+          () => {
+            geoBtn.textContent = '📍 Use my location';
+            alert('Could not detect location — please search for a city instead.');
+          }
+        );
+      });
+
+      /* ---------- load forecast ---------- */
+
+      async function loadForecast(lat, lon, city) {
+        loading.classList.remove('hidden');
+        errorBox.classList.add('hidden');
+        todayCard.classList.add('hidden');
+        weekSection.classList.add('hidden');
+
+        try {
+          const res = await fetch('/api/forecast?lat=' + lat + '&lon=' + lon + '&city=' + encodeURIComponent(city));
+          const data = await res.json();
+          loading.classList.add('hidden');
+
+          if (data.error) { showError(data.error); return; }
+
+          lastData = data;
+          lastCity = city;
+          selectedDayIndex = null;
+          renderToday(data.today, city);
+          renderWeek(data.week);
+          applyWeatherTheme(data.today ? data.today.predicted_weather : null);
+
+          todayCard.classList.remove('hidden');
+          weekSection.classList.remove('hidden');
+        } catch (e) {
+          loading.classList.add('hidden');
+          showError('Failed to load forecast: ' + e.message);
+        }
+      }
+
+      function showError(msg) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove('hidden');
+      }
+
+      /* ---------- render today ---------- */
+
+      function renderToday(day, city) {
+        if (!day) { todayCard.innerHTML = '<p class="muted">No data for today.</p>'; return; }
+        const f = day.features;
+        todayCard.innerHTML =
+          '<div class="today-header">' +
+            '<div>' +
+              '<p class="today-city">📍 ' + city + '</p>' +
+              '<h2>' + day.day_name + ', ' + day.date_display + '</h2>' +
+            '</div>' +
+            '<div class="today-emoji">' + day.emoji + '</div>' +
+          '</div>' +
+          '<div class="today-stats">' +
+            '<span>🌡️ ' + tempPair(f.temp_max_c, f.temp_min_c) + '</span>' +
+            '<span>💧 ' + f.precipitation_mm.toFixed(1) + ' mm</span>' +
+            '<span>💨 ' + f.wind_m_s.toFixed(1) + ' m/s</span>' +
+          '</div>' +
+          '<div class="today-explanation">' + convertExplanation(day.explanation) + '</div>' +
+          '<div class="today-outfit">' +
+            '<div class="outfit-item">' + (ITEM_EMOJI[day.outfit.top] || '👕') + ' <strong>Top:</strong> ' + day.outfit.top + '</div>' +
+            '<div class="outfit-item">' + (ITEM_EMOJI[day.outfit.bottom] || '👖') + ' <strong>Bottom:</strong> ' + day.outfit.bottom + '</div>' +
+            (day.outfit.outerwear ? '<div class="outfit-item">' + (ITEM_EMOJI[day.outfit.outerwear] || '🧥') + ' <strong>Outerwear:</strong> ' + day.outfit.outerwear + '</div>' : '') +
+            '<div class="outfit-item">' + (ITEM_EMOJI[day.outfit.footwear] || '👟') + ' <strong>Footwear:</strong> ' + day.outfit.footwear + '</div>' +
+            (day.outfit.accessories && day.outfit.accessories.length
+              ? '<div class="outfit-item"><strong>Accessories:</strong> ' + day.outfit.accessories.map(function(a) { return (ITEM_EMOJI[a] || '') + ' ' + a; }).join(', ') + '</div>'
+              : '') +
+          '</div>';
+      }
+
+      /* ---------- render week ---------- */
+
+      let selectedDayIndex = null;
+
+      function renderWeek(days) {
+        weekStrip.innerHTML = days.map((day, i) => {
+          const f = day.features;
+          let cls = 'day-card';
+          if (day.is_today && selectedDayIndex === null) cls += ' day-selected';
+          if (selectedDayIndex === i) cls += ' day-selected';
+          if (day.is_past && !day.is_today) cls += ' day-past';
+
+          return '<button class="' + cls + '" data-day-index="' + i + '" aria-label="' + day.day_name + ', ' + day.date_display + '">' +
+            '<div class="day-name">' + day.day_abbrev + '</div>' +
+            '<div class="day-date">' + day.date_short + '</div>' +
+            '<div class="day-emoji">' + day.emoji + '</div>' +
+            '<div class="day-temps">' + tempPair(f.temp_max_c, f.temp_min_c) + '</div>' +
+            '<div class="day-precip">💧 ' + f.precipitation_mm.toFixed(1) + '</div>' +
+            '<div class="day-outfit-brief">' + day.outfit_brief + '</div>' +
+            (day.is_today ? '<div class="day-badge">Today</div>' : '') +
+          '</button>';
+        }).join('');
+
+        weekStrip.querySelectorAll('.day-card').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.dataset.dayIndex);
+            selectedDayIndex = idx;
+            const day = lastData.week[idx];
+            renderToday(day, lastCity);
+            applyWeatherTheme(day.predicted_weather);
+            renderWeek(lastData.week);
+            todayCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          });
+        });
+      }
+
+      /* ---------- weather theme ---------- */
+
+      function applyWeatherTheme(label) {
+        document.body.classList.remove('weather-sun', 'weather-rain', 'weather-drizzle', 'weather-snow', 'weather-fog');
+        if (label) document.body.classList.add('weather-' + label);
+      }
+
+      /* ---------- default to San Diego on page load ---------- */
+      loadForecast(32.72, -117.16, 'San Diego, California, United States');
+      citySearch.value = 'San Diego, California, United States';
+    </script>
+  </body>
+</html>

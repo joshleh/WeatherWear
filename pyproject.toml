@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weatherwear"
+version = "0.1.0"
+description = "AI-powered outfit recommendations based on weather predictions."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["pandas", "scikit-learn", "joblib", "requests", "fastapi", "uvicorn", "jinja2", "python-multipart"]
+
+[project.scripts]
+weatherwear = "weatherwear.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
