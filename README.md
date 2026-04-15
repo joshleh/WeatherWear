@@ -37,32 +37,22 @@ The entire system runs without any paid APIs or LLMs.
 ## How It Works
 
 ```
-Browser (client-side)                    Server (FastAPI)
-─────────────────────                    ────────────────
-         │
-         ▼
-┌─────────────────────┐
-│  Open-Meteo API     │  fetched directly from the browser
-│  (weather forecast) │  (avoids server-side rate limits)
-└─────────┬───────────┘
-          │
-          ▼
-┌─────────────────────┐       POST /api/recommend
-│  4 Features per Day │  ──────────────────────────▶  ┌─────────────────────┐
-│  precip, temp, wind │                               │  Random Forest      │
-└─────────────────────┘                               │  Classifier         │
-                                                      │  (400 trees)        │
-                                                      └─────────┬───────────┘
-                                                                │
-                                                                ▼
-                                                      ┌─────────────────────┐
-                                                      │  Outfit Policy      │
-                                                      │  (rule-based)       │
-                                                      └─────────┬───────────┘
-                                                                │
-                                                      ◀─────────┘
-                                                JSON response:
-                                                label, outfit, explanation
+ Browser                                          Server
+ ──────────────────────────                        ──────────────────────────
+
+ Open-Meteo API (free)                                    
+   weather forecast data                                  
+         │                                                
+         ▼                                                
+ 4 features per day             POST /api/recommend       
+ (precip, temp, wind)  ──────────────────────────▶  Random Forest Classifier
+                                                    (400 trees, scikit-learn)
+                                                             │
+                                                             ▼
+                                                    Rule-Based Outfit Policy
+                                                             │
+                               ◀─────────────────────────────┘
+                               JSON: label, outfit, explanation
 ```
 
 ### Model Performance
