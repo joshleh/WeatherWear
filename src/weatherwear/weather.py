@@ -12,18 +12,22 @@ import requests
 from .types import WeatherFeatures
 
 
-def _get_with_retry(url: str, params: dict, timeout: int = 10, retries: int = 3) -> requests.Response:
+def _get_with_retry(url: str, params: dict, timeout: int = 10, retries: int = 4) -> requests.Response:
     """GET with exponential backoff on 429 / 5xx errors."""
     for attempt in range(retries):
         resp = requests.get(url, params=params, timeout=timeout)
         if resp.status_code == 429 or resp.status_code >= 500:
             if attempt < retries - 1:
-                time.sleep(1.5 ** attempt + 0.5)
+                time.sleep(2 ** attempt + 1)
                 continue
         resp.raise_for_status()
         return resp
     resp.raise_for_status()
     return resp
+
+
+_forecast_cache: dict[str, tuple[float, list["DayWeather"]]] = {}
+_FORECAST_TTL = 1800  # 30 minutes
 
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
@@ -58,7 +62,17 @@ class DayWeather:
 
 
 def fetch_week_weather(lat: float, lon: float) -> list[DayWeather]:
-    """Fetch Sun-Sat weather for the current week via Open-Meteo (free, no key)."""
+    """Fetch Sun-Sat weather for the current week via Open-Meteo (free, no key).
+
+    Results are cached for 30 minutes per location to avoid rate limits.
+    """
+    cache_key = f"{round(lat, 2)}:{round(lon, 2)}"
+    now = time.time()
+    if cache_key in _forecast_cache:
+        ts, cached_days = _forecast_cache[cache_key]
+        if now - ts < _FORECAST_TTL:
+            return cached_days
+
     today = date.today()
     sunday, saturday = _current_week_range()
 
@@ -96,6 +110,8 @@ def fetch_week_weather(lat: float, lon: float) -> list[DayWeather]:
                 ),
             )
         )
+
+    _forecast_cache[cache_key] = (now, days)
     return days
 
 
