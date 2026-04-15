@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
@@ -9,6 +10,20 @@ from typing import Any
 import requests
 
 from .types import WeatherFeatures
+
+
+def _get_with_retry(url: str, params: dict, timeout: int = 10, retries: int = 3) -> requests.Response:
+    """GET with exponential backoff on 429 / 5xx errors."""
+    for attempt in range(retries):
+        resp = requests.get(url, params=params, timeout=timeout)
+        if resp.status_code == 429 or resp.status_code >= 500:
+            if attempt < retries - 1:
+                time.sleep(1.5 ** attempt + 0.5)
+                continue
+        resp.raise_for_status()
+        return resp
+    resp.raise_for_status()
+    return resp
 
 FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
@@ -47,7 +62,7 @@ def fetch_week_weather(lat: float, lon: float) -> list[DayWeather]:
     today = date.today()
     sunday, saturday = _current_week_range()
 
-    resp = requests.get(
+    resp = _get_with_retry(
         FORECAST_URL,
         params={
             "latitude": lat,
@@ -57,9 +72,7 @@ def fetch_week_weather(lat: float, lon: float) -> list[DayWeather]:
             "end_date": saturday.isoformat(),
             "timezone": "auto",
         },
-        timeout=10,
     )
-    resp.raise_for_status()
     daily = resp.json()["daily"]
 
     days: list[DayWeather] = []
@@ -132,12 +145,10 @@ def search_cities(query: str, count: int = 8) -> list[dict[str, Any]]:
     if cache_key in _search_cache:
         return _search_cache[cache_key]
 
-    resp = requests.get(
+    resp = _get_with_retry(
         GEOCODING_URL,
         params={"name": query, "count": 50, "language": "en", "format": "json"},
-        timeout=10,
     )
-    resp.raise_for_status()
     raw = resp.json().get("results", [])
 
     for r in raw:

@@ -80,7 +80,10 @@ def api_forecast(lat: float, lon: float, city: str = "Your Location") -> JSONRes
     try:
         week = fetch_week_weather(lat, lon)
     except Exception as e:
-        return JSONResponse({"error": f"Could not fetch weather data: {e}"}, status_code=502)
+        msg = "Weather service is temporarily unavailable. Please try again in a moment."
+        if "429" in str(e):
+            msg = "Weather API rate limit reached. Please wait a few seconds and try again."
+        return JSONResponse({"error": msg}, status_code=502)
 
     days: list[dict[str, Any]] = []
     today_data: dict[str, Any] | None = None
