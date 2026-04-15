@@ -21,7 +21,7 @@ The entire system runs without any paid APIs or LLMs.
 
 ## Live Demo
 
-**[weatherwear-demo.onrender.com](https://weatherwear-demo.onrender.com)** (free tier — first load may take ~30s to wake up)
+**[weatherwear-kpgz.onrender.com](https://weatherwear-kpgz.onrender.com)** (free tier — first load may take ~30s to wake up)
 
 ## Features
 
