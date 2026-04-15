@@ -2,14 +2,13 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass
-from datetime import date, timedelta
 from pathlib import Path
 from typing import Any
 
 import requests
 
-from .types import WeatherFeatures
+
+GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 
 
 def _get_with_retry(url: str, params: dict, timeout: int = 10, retries: int = 4) -> requests.Response:
@@ -24,95 +23,6 @@ def _get_with_retry(url: str, params: dict, timeout: int = 10, retries: int = 4)
         return resp
     resp.raise_for_status()
     return resp
-
-
-_forecast_cache: dict[str, tuple[float, list["DayWeather"]]] = {}
-_FORECAST_TTL = 1800  # 30 minutes
-
-FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
-GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
-
-_DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-_DAY_ABBREV = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-_MONTHS = ["January", "February", "March", "April", "May", "June",
-           "July", "August", "September", "October", "November", "December"]
-_MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-
-
-def _current_week_range() -> tuple[date, date]:
-    """Return (sunday, saturday) for the current week."""
-    today = date.today()
-    days_since_sunday = (today.weekday() + 1) % 7
-    sunday = today - timedelta(days=days_since_sunday)
-    saturday = sunday + timedelta(days=6)
-    return sunday, saturday
-
-
-@dataclass(frozen=True)
-class DayWeather:
-    date_str: str
-    date_display: str   # "15 April 2026"
-    date_short: str     # "Apr 15"
-    day_name: str
-    day_abbrev: str
-    is_today: bool
-    is_past: bool
-    features: WeatherFeatures
-
-
-def fetch_week_weather(lat: float, lon: float) -> list[DayWeather]:
-    """Fetch Sun-Sat weather for the current week via Open-Meteo (free, no key).
-
-    Results are cached for 30 minutes per location to avoid rate limits.
-    """
-    cache_key = f"{round(lat, 2)}:{round(lon, 2)}"
-    now = time.time()
-    if cache_key in _forecast_cache:
-        ts, cached_days = _forecast_cache[cache_key]
-        if now - ts < _FORECAST_TTL:
-            return cached_days
-
-    today = date.today()
-    sunday, saturday = _current_week_range()
-
-    resp = _get_with_retry(
-        FORECAST_URL,
-        params={
-            "latitude": lat,
-            "longitude": lon,
-            "daily": "precipitation_sum,temperature_2m_max,temperature_2m_min,wind_speed_10m_max",
-            "start_date": sunday.isoformat(),
-            "end_date": saturday.isoformat(),
-            "timezone": "auto",
-        },
-    )
-    daily = resp.json()["daily"]
-
-    days: list[DayWeather] = []
-    for i, d_str in enumerate(daily["time"]):
-        d = date.fromisoformat(d_str)
-        wd = d.weekday()
-        days.append(
-            DayWeather(
-                date_str=d_str,
-                date_display=f"{d.day} {_MONTHS[d.month - 1]} {d.year}",
-                date_short=f"{_MONTHS_SHORT[d.month - 1]} {d.day}",
-                day_name=_DAY_NAMES[wd],
-                day_abbrev=_DAY_ABBREV[wd],
-                is_today=(d == today),
-                is_past=(d < today),
-                features=WeatherFeatures(
-                    precipitation_mm=float(daily["precipitation_sum"][i] or 0.0),
-                    temp_max_c=float(daily["temperature_2m_max"][i] or 0.0),
-                    temp_min_c=float(daily["temperature_2m_min"][i] or 0.0),
-                    wind_m_s=float(daily["wind_speed_10m_max"][i] or 0.0),
-                ),
-            )
-        )
-
-    _forecast_cache[cache_key] = (now, days)
-    return days
 
 
 def reverse_geocode(lat: float, lon: float) -> str | None:

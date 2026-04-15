@@ -12,7 +12,7 @@ Built as the final project for **CSE 150A** (Introduction to Artificial Intellig
 
 WeatherWear is a utility-based AI agent that recommends what to wear based on the weather. Select any city in the world and the agent will:
 
-- Fetch real-time and forecasted weather data (via the free [Open-Meteo API](https://open-meteo.com/))
+- Fetch real-time and forecasted weather data client-side (via the free [Open-Meteo API](https://open-meteo.com/))
 - Classify weather conditions using a **Random Forest model** trained on historical Seattle weather (2012-2015)
 - Recommend a full outfit (top, bottom, outerwear, footwear, accessories) with a conversational, emoji-rich explanation
 - Show a **weekly view** (Sunday-Saturday) with outfit summaries for each day
@@ -37,33 +37,32 @@ The entire system runs without any paid APIs or LLMs.
 ## How It Works
 
 ```
-Weather Data (Open-Meteo API)
-        │
-        ▼
+Browser (client-side)                    Server (FastAPI)
+─────────────────────                    ────────────────
+         │
+         ▼
 ┌─────────────────────┐
-│  4 Features per Day │  precipitation (mm), temp max/min (°C), wind speed (m/s)
+│  Open-Meteo API     │  fetched directly from the browser
+│  (weather forecast) │  (avoids server-side rate limits)
 └─────────┬───────────┘
           │
           ▼
-┌─────────────────────┐
-│  Random Forest      │  400 trees, balanced subsampling
-│  Classifier         │  trained on Seattle weather (2012-2015)
-└─────────┬───────────┘
-          │
-          ▼
-┌─────────────────────┐
-│  Weather Label      │  sun / rain / drizzle / snow / fog
-└─────────┬───────────┘
-          │
-          ▼
-┌─────────────────────┐
-│  Outfit Policy      │  rule-based: label + raw features → clothing
-└─────────┬───────────┘
-          │
-          ▼
-┌─────────────────────┐
-│  Explanation Engine  │  template-based conversational output (no LLM)
-└─────────────────────┘
+┌─────────────────────┐       POST /api/recommend
+│  4 Features per Day │  ──────────────────────────▶  ┌─────────────────────┐
+│  precip, temp, wind │                               │  Random Forest      │
+└─────────────────────┘                               │  Classifier         │
+                                                      │  (400 trees)        │
+                                                      └─────────┬───────────┘
+                                                                │
+                                                                ▼
+                                                      ┌─────────────────────┐
+                                                      │  Outfit Policy      │
+                                                      │  (rule-based)       │
+                                                      └─────────┬───────────┘
+                                                                │
+                                                      ◀─────────┘
+                                                JSON response:
+                                                label, outfit, explanation
 ```
 
 ### Model Performance
@@ -83,12 +82,12 @@ Weather Data (Open-Meteo API)
 | **Performance** | Accuracy of weather classification and appropriateness of outfit recommendations |
 | **Environment** | Real-world weather for any city (Open-Meteo API) + historical Seattle data for training |
 | **Actuators**   | Outfit recommendations (top, bottom, outerwear, footwear, accessories) with natural-language explanations |
-| **Sensors**     | Precipitation (mm), temp max/min (°C), wind speed (m/s) from Open-Meteo forecasts or manual CLI input |
+| **Sensors**     | Precipitation (mm), temp max/min (°C), wind speed (m/s) from Open-Meteo forecasts (fetched client-side) or manual CLI input |
 
 ## Tech Stack
 
 - **Backend**: Python, FastAPI, scikit-learn, Jinja2
-- **Frontend**: HTML, CSS, vanilla JavaScript (no framework)
+- **Frontend**: HTML, CSS, vanilla JavaScript (calls Open-Meteo directly from the browser)
 - **ML Model**: Random Forest (scikit-learn) trained on [Seattle Weather dataset](https://www.kaggle.com/datasets/ananthr1/weather-prediction/data)
 - **APIs**: [Open-Meteo](https://open-meteo.com/) (weather + geocoding), [Nominatim](https://nominatim.openstreetmap.org/) (reverse geocoding)
 - **Hosting**: [Render](https://render.com/) (free tier)
@@ -127,22 +126,22 @@ weatherwear demo manual --precipitation 3.2 --temp-max 11 --temp-min 5 --wind 6.
 
 ```
 src/weatherwear/
-    agent.py           Sense → Think → Act orchestration
-    model.py           Random Forest training, persistence, inference
-    outfit.py          Rule-based outfit policy
-    explain.py         Template-based explanation engine (no LLM)
-    weather.py         Open-Meteo API client + city search with caching
-    webapp.py          FastAPI web application
-    cli.py             Command-line interface
-    types.py           Shared data types
+    agent.py             Sense → Think → Act orchestration
+    model.py             Random Forest training, persistence, inference
+    outfit.py            Rule-based outfit policy
+    explain.py           Template-based explanation engine (no LLM)
+    weather.py           City search + reverse geocoding (Open-Meteo / Nominatim)
+    webapp.py            FastAPI web application (serves UI + /api/recommend)
+    cli.py               Command-line interface (offline demos)
+    types.py             Shared data types
     country_cities.json  Pre-computed city data for 50+ countries
 
 web/
-    templates/         Jinja2 HTML template
-    static/            CSS styles
+    templates/           HTML + client-side JS (fetches weather directly from Open-Meteo)
+    static/              CSS styles
 
-seattle-weather.csv    Training dataset (Seattle 2012-2015)
-render.yaml            Render deployment blueprint
+seattle-weather.csv      Training dataset (Seattle 2012-2015)
+render.yaml              Render deployment blueprint
 ```
 
 ## Limitations
