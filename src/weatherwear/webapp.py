@@ -9,12 +9,14 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 
 from .agent import WeatherWearAgent
 from .data import load_seattle_weather_csv
 from .explain import WEATHER_EMOJI, brief_outfit, build_explanation
 from .model import load_model, save_model, train_random_forest
-from .weather import fetch_week_weather, reverse_geocode, search_cities
+from .types import WeatherFeatures
+from .weather import reverse_geocode, search_cities
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA_PATH = Path(os.environ.get("WEATHERWEAR_DATA", str(ROOT / "seattle-weather.csv")))
@@ -73,36 +75,54 @@ def api_reverse(lat: float, lon: float) -> JSONResponse:
     return JSONResponse({"label": label})
 
 
-@app.get("/api/forecast")
-def api_forecast(lat: float, lon: float, city: str = "Your Location") -> JSONResponse:
-    agent = _get_agent()
+class DayInput(BaseModel):
+    date: str
+    date_display: str
+    date_short: str
+    day_name: str
+    day_abbrev: str
+    is_today: bool
+    is_past: bool
+    precipitation_mm: float
+    temp_max_c: float
+    temp_min_c: float
+    wind_m_s: float
 
-    try:
-        week = fetch_week_weather(lat, lon)
-    except Exception as e:
-        msg = "Weather service is temporarily unavailable. Please try again in a moment."
-        if "429" in str(e):
-            msg = "Weather API rate limit reached. Please wait a few seconds and try again."
-        return JSONResponse({"error": msg}, status_code=502)
+
+class RecommendRequest(BaseModel):
+    city: str = "Your Location"
+    days: list[DayInput]
+
+
+@app.post("/api/recommend")
+def api_recommend(body: RecommendRequest) -> JSONResponse:
+    """Accept raw weather data from the client and return ML predictions + outfits."""
+    agent = _get_agent()
 
     days: list[dict[str, Any]] = []
     today_data: dict[str, Any] | None = None
 
-    for day in week:
-        label, outfit = agent.decide(day.features)
+    for day in body.days:
+        features = WeatherFeatures(
+            precipitation_mm=day.precipitation_mm,
+            temp_max_c=day.temp_max_c,
+            temp_min_c=day.temp_min_c,
+            wind_m_s=day.wind_m_s,
+        )
+        label, outfit = agent.decide(features)
         is_past = day.is_past and not day.is_today
-        explanation = build_explanation(label, day.features, outfit, is_past=is_past)
+        explanation = build_explanation(label, features, outfit, is_past=is_past)
         emoji = WEATHER_EMOJI.get(label, "🌤️")
 
         day_data: dict[str, Any] = {
-            "date": day.date_str,
+            "date": day.date,
             "date_display": day.date_display,
             "date_short": day.date_short,
             "day_name": day.day_name,
             "day_abbrev": day.day_abbrev,
             "is_today": day.is_today,
             "is_past": day.is_past,
-            "features": asdict(day.features),
+            "features": asdict(features),
             "predicted_weather": label,
             "emoji": emoji,
             "outfit": asdict(outfit),
@@ -113,4 +133,4 @@ def api_forecast(lat: float, lon: float, city: str = "Your Location") -> JSONRes
         if day.is_today:
             today_data = day_data
 
-    return JSONResponse({"city": city, "today": today_data, "week": days})
+    return JSONResponse({"city": body.city, "today": today_data, "week": days})

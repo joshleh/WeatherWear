@@ -268,6 +268,26 @@
         );
       });
 
+      /* ---------- date helpers ---------- */
+
+      const _MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const _MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const _DAY_NAMES = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+      const _DAY_ABBREV = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+      function currentWeekRange() {
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const dow = today.getDay();
+        const sunday = new Date(today);
+        sunday.setDate(today.getDate() - dow);
+        const saturday = new Date(sunday);
+        saturday.setDate(sunday.getDate() + 6);
+        return [sunday, saturday];
+      }
+
+      function fmtDate(d) { return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+
       /* ---------- load forecast ---------- */
 
       async function loadForecast(lat, lon, city) {
@@ -277,8 +297,44 @@
         weekSection.classList.add('hidden');
 
         try {
-          const res = await fetch('/api/forecast?lat=' + lat + '&lon=' + lon + '&city=' + encodeURIComponent(city));
-          const data = await res.json();
+          const [sunday, saturday] = currentWeekRange();
+          const today = new Date(); today.setHours(0,0,0,0);
+
+          const weatherUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + lat +
+            '&longitude=' + lon +
+            '&daily=precipitation_sum,temperature_2m_max,temperature_2m_min,wind_speed_10m_max' +
+            '&start_date=' + fmtDate(sunday) + '&end_date=' + fmtDate(saturday) +
+            '&timezone=auto';
+
+          const weatherRes = await fetch(weatherUrl);
+          if (!weatherRes.ok) throw new Error('Weather API returned ' + weatherRes.status);
+          const weatherJson = await weatherRes.json();
+          const daily = weatherJson.daily;
+
+          const dayInputs = daily.time.map((dStr, i) => {
+            const d = new Date(dStr + 'T00:00:00');
+            const jsDay = (d.getDay() + 6) % 7;
+            return {
+              date: dStr,
+              date_display: d.getDate() + ' ' + _MONTHS[d.getMonth()] + ' ' + d.getFullYear(),
+              date_short: _MONTHS_SHORT[d.getMonth()] + ' ' + d.getDate(),
+              day_name: _DAY_NAMES[jsDay],
+              day_abbrev: _DAY_ABBREV[jsDay],
+              is_today: fmtDate(d) === fmtDate(today),
+              is_past: d < today,
+              precipitation_mm: daily.precipitation_sum[i] || 0,
+              temp_max_c: daily.temperature_2m_max[i] || 0,
+              temp_min_c: daily.temperature_2m_min[i] || 0,
+              wind_m_s: daily.wind_speed_10m_max[i] || 0,
+            };
+          });
+
+          const recRes = await fetch('/api/recommend', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ city: city, days: dayInputs })
+          });
+          const data = await recRes.json();
           loading.classList.add('hidden');
 
           if (data.error) { showError(data.error); return; }
@@ -294,7 +350,7 @@
           weekSection.classList.remove('hidden');
         } catch (e) {
           loading.classList.add('hidden');
-          showError('Failed to load forecast: ' + e.message);
+          showError('Failed to load forecast. Please try again in a moment.');
         }
       }
 
